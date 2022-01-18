@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lösen eines Rubiks Cubes</title>
+</head>
+<body>
+    <h1>Rubik’s Cube lösen </h1>
+    <p>Du hast deinen Rubik’s Cube durcheinandergemischt, bekommst ihn aber nicht mehr gelöst? Das 
+        ist nicht wunderlich, denn das Lösen eines Rubik’s Cubes erfordert strukturierte 
+        Vorgehensweisen. Es gibt viele verschiedene Methoden, um einen Rubik’s Cube zu lösen. In der 
+        populärsten Methode, CFOP, müssen mindestens 78 Algorithmen auswendig gelernt werden. Für 
+        einen Anfänger ist das aber zu viel. Daher wollen wir uns die Anfängermethode anschauen. Hier 
+        gibt es zwar auch ein paar Algorithmen, die du lernen musst, diese sind allerdings relativ einfach.
+    </p>
+    <hr>
+    
+    <h2>Notation</h2>
+    <p>Damit wir uns über Algorithmen verständigen können, brauchen wir eine einheitliche Notation, um 
+        aufschreiben zu können, welche Seite des Würfels wir drehen. Es gibt viele verschiedene 
+        Notationen mit unterschiedlichen Vor- und Nachteilen, wir wollen uns allerdings auf die oﬃzielle 
+        Notation beschränken. Dazu wird jeder Seite des Würfels ein Buchstabe zugewiesen. Diese sind:
+    </p>
+
+    <table border="1" align="center">
+        <tr>
+            <th>Buchstabe</th>
+            <th>Englischer Name</th>
+            <th>Deutscher Name</th>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td>Left</td>
+            <td>Links</td>
+        </tr>
+        <tr>
+            <td>R</td>
+            <td>Right</td>
+            <td>Rechts</td>
+        </tr>
+        <tr>
+            <td>U</td>
+            <td>Up</td>
+            <td>Oben</td>
+        </tr>
+        <tr>
+            <td>D</td>
+            <td>Down</td>
+            <td>Unten</td>
+        </tr>
+        <tr>
+            <td>F</td>
+            <td>Front</td>
+            <td>Vorne</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>Back</td>
+            <td>Hinten</td>
+        </tr>
+    </table>
+
+    <p>Am besten kannst du dir das visualisieren, wenn du deinen Würfel so vor dich hältst, dass eine 
+        Seite zu dir schaut und eine andere auf einer Fläche liegt:
+    </p>
+
+    <p>Mithilfe dieser Buchstaben kann nun auch Drehung einer Seite angegeben werden:</p>
+
+    <ul>
+        <li>Wenn du einen der Buchstaben siehst, drehst du die entsprechende Seite um 90°, also eine 
+            Viertelumdrehung, im Uhrzeigersinn. Beispiel: F R L
+        </li>
+        <li>Wenn ein Apostroph (‘) hinter dem Buchstaben steht, drehst du die entsprechende Seite um 
+            90° entgegen den Uhrzeigersinn. Beispiel: F’ R’ L’
+        </li>
+        <li>
+            Wenn eine 2 hinter dem Buchstaben steht, drehst du die Seite 180°, also eine halbe Drehung. 
+            Beispiel: F2 R2 L2
+        </li>
+    </ul>
+    <p>Ein Algorithmus sieht dann also zum Beispiel so aus: R U R’ U R U2 R’</p>
+    <hr>
+    <h2>1. Weißes Kreuz</h2>
+    <p>Da wir nun wissen, wie Algorithmen beschrieben werden, können wir mit dem Lösen anfangen. 
+        Für diesen Schritt brauchen wir allerdings noch keine Algorithmen, da wir das weiße Kreuz rein 
+        intuitiv bauen können. Probier es einfach mal aus! Achte unbedingt darauf, dass die Kanten auch 
+        an der richtigen Seite sind.
+    </p>
+    <p>Tipps:  TBD</p>
+    <p>Falsch:</p>
+    <p>Richtig:</p>
+    <p>Am Ende sollte das dann in etwa so aussehen:</p>
+    <hr>
+
+    <h2>2. Weiße Ecken</h2>
+    <p>Zuerst drehen wir den Würfel, sodass das weiße Kreuz nach unten zeigt. Wichtig ist, dass du von 
+        jetzt an nur noch U frei drehen darfst, ansonsten machst du das weiße Kreuz kaputt. Wenn du 
+        einen Algorithmus ausführst, gilt das natürlich nicht. Jetzt suchen wir uns Ecken mit einer weißen 
+        Seite, und drehen es an sein Platz. Dann hältst du den Würfel so, dass diese Ecke rechts-oben ist.
+    </p>
+
+    <h2>3. Zweite Ebene</h2>
+    <h2>4. Gelbes Kreuz</h2>
+    <h2>5. Gelbe Kanten</h2>
+    <h2>6. Gelbe Ecken</h2>
+</body>
+</html>
