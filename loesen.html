@@ -1,30 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Lösen eines Rubiks Cubes</title>
 </head>
+<header>
+  <h1>Rubiks Info</h1>
+  <div style="display: flex; flex-direction: row">
+      <div style="padding: 10px">
+          <a href="./index.html">Start</a>
+      </div>
+      <div style="padding: 10px">
+          <a href="./geschichte.html">Geschichte</a>
+      </div>
+      <div style="padding: 10px">
+          <a href="./arten.html">Arten</a>
+      </div>
+      <div style="padding: 10px">
+          <a href="./loesen.html">Lösung</a>
+      </div>
+  </div>
+</header>
 <body>
     <div>
         <h1>Rubik’s Cube lösen </h1>
-        <p>Du hast deinen Rubik’s Cube durcheinandergemischt, bekommst ihn aber nicht mehr gelöst? Das 
-            ist nicht wunderlich, denn das Lösen eines Rubik’s Cubes erfordert strukturierte 
-            Vorgehensweisen. Es gibt viele verschiedene Methoden, um einen Rubik’s Cube zu lösen. In der 
-            populärsten Methode, CFOP, müssen mindestens 78 Algorithmen auswendig gelernt werden. Für 
-            einen Anfänger ist das aber zu viel. Daher wollen wir uns die Anfängermethode anschauen. Hier 
+        <p>Du hast deinen Rubik’s Cube durcheinandergemischt, bekommst ihn aber nicht mehr gelöst? Das
+            ist nicht wunderlich, denn das Lösen eines Rubik’s Cubes erfordert strukturierte
+            Vorgehensweisen. Es gibt viele verschiedene Methoden, um einen Rubik’s Cube zu lösen. In der
+            populärsten Methode, CFOP, müssen mindestens 78 Algorithmen auswendig gelernt werden. Für
+            einen Anfänger ist das aber zu viel. Daher wollen wir uns die Anfängermethode anschauen. Hier
             gibt es zwar auch ein paar Algorithmen, die du lernen musst, diese sind allerdings relativ einfach.
         </p>
         <hr>
     </div>
     <div>
         <h2>Notation</h2>
-        <p>Damit wir uns über Algorithmen verständigen können, brauchen wir eine einheitliche Notation, um 
-            aufschreiben zu können, welche Seite des Würfels wir drehen. Es gibt viele verschiedene 
-            Notationen mit unterschiedlichen Vor- und Nachteilen, wir wollen uns allerdings auf die oﬃzielle 
+        <p>Damit wir uns über Algorithmen verständigen können, brauchen wir eine einheitliche Notation, um
+            aufschreiben zu können, welche Seite des Würfels wir drehen. Es gibt viele verschiedene
+            Notationen mit unterschiedlichen Vor- und Nachteilen, wir wollen uns allerdings auf die oﬃzielle
             Notation beschränken. Dazu wird jeder Seite des Würfels ein Buchstabe zugewiesen. Diese sind:
         </p>
+  <body>
+    <h2>Rubik’s Cube lösen</h2>
+    <p>
+      Du hast deinen Rubik’s Cube durcheinandergemischt, bekommst ihn aber nicht
+      mehr gelöst? Das ist nicht wunderlich, denn das Lösen eines Rubik’s Cubes
+      erfordert strukturierte Vorgehensweisen. Es gibt viele verschiedene
+      Methoden, um einen Rubik’s Cube zu lösen. In der populärsten Methode,
+      CFOP, müssen mindestens 78 Algorithmen auswendig gelernt werden. Für einen
+      Anfänger ist das aber zu viel. Daher wollen wir uns die Anfängermethode
+      anschauen. Hier gibt es zwar auch ein paar Algorithmen, die du lernen
+      musst, diese sind allerdings relativ einfach.
+    </p>
+    <hr />
+
+    <h3>Notation</h3>
+    <p>
+      Damit wir uns über Algorithmen verständigen können, brauchen wir eine
+      einheitliche Notation, um aufschreiben zu können, welche Seite des Würfels
+      wir drehen. Es gibt viele verschiedene Notationen mit unterschiedlichen
+      Vor- und Nachteilen, wir wollen uns allerdings auf die oﬃzielle Notation
+      beschränken. Dazu wird jeder Seite des Würfels ein Buchstabe zugewiesen.
+      Diese sind:
+    </p>
 
         <table border="1" align="center">
             <tr>
@@ -63,19 +104,19 @@
                 <td>Hinten</td>
             </tr>
         </table>
-        <p>Am besten kannst du dir das visualisieren, wenn du deinen Würfel so vor dich hältst, dass eine 
+        <p>Am besten kannst du dir das visualisieren, wenn du deinen Würfel so vor dich hältst, dass eine
             Seite zu dir schaut und eine andere auf einer Fläche liegt:
         </p>
         <p>Mithilfe dieser Buchstaben kann nun auch Drehung einer Seite angegeben werden:</p>
         <ul>
-            <li>Wenn du einen der Buchstaben siehst, drehst du die entsprechende Seite um 90°, also eine 
+            <li>Wenn du einen der Buchstaben siehst, drehst du die entsprechende Seite um 90°, also eine
                 Viertelumdrehung, im Uhrzeigersinn. Beispiel: <kbd>F R L</kbd>
             </li>
-            <li>Wenn ein Apostroph (‘) hinter dem Buchstaben steht, drehst du die entsprechende Seite um 
+            <li>Wenn ein Apostroph (‘) hinter dem Buchstaben steht, drehst du die entsprechende Seite um
                 90° <b>entgegen</b> den Uhrzeigersinn. Beispiel: <kbd>F’ R’ L’</kbd>
             </li>
             <li>
-                Wenn eine <b>2</b> hinter dem Buchstaben steht, drehst du die Seite 180°, also eine halbe Drehung. 
+                Wenn eine <b>2</b> hinter dem Buchstaben steht, drehst du die Seite 180°, also eine halbe Drehung.
                 Beispiel: <kbd>F2 R2 L2</kbd>
             </li>
         </ul>
@@ -84,9 +125,9 @@
     </div>
     <div>
         <h2>Weißes Kreuz</h2>
-        <p>Da wir nun wissen, wie Algorithmen beschrieben werden, können wir mit dem Lösen anfangen. 
-            Für diesen Schritt brauchen wir allerdings noch keine Algorithmen, da wir das weiße Kreuz rein 
-            intuitiv bauen können. Probier es einfach mal aus! Achte unbedingt darauf, dass die Kanten auch 
+        <p>Da wir nun wissen, wie Algorithmen beschrieben werden, können wir mit dem Lösen anfangen.
+            Für diesen Schritt brauchen wir allerdings noch keine Algorithmen, da wir das weiße Kreuz rein
+            intuitiv bauen können. Probier es einfach mal aus! Achte unbedingt darauf, dass die Kanten auch
             an der richtigen Seite sind.
         </p>
         <table>
@@ -100,20 +141,20 @@
                     <img src="images/white_cross_correct.jpg" style=" height: 300px; padding: 15px;">
                 </td>
             </tr>
-        
+
         </table>
         <hr>
     </div>
     <div>
         <h2>Weiße Ecken</h2>
-        <p>Zuerst drehen wir den Würfel, sodass das weiße Kreuz nach unten zeigt. Wichtig ist, dass du von 
-            jetzt an nur noch U frei drehen darfst, ansonsten machst du das weiße Kreuz kaputt. Wenn du 
-            einen Algorithmus ausführst, gilt das natürlich nicht. Jetzt suchen wir uns Ecken mit einer weißen 
+        <p>Zuerst drehen wir den Würfel, sodass das weiße Kreuz nach unten zeigt. Wichtig ist, dass du von
+            jetzt an nur noch U frei drehen darfst, ansonsten machst du das weiße Kreuz kaputt. Wenn du
+            einen Algorithmus ausführst, gilt das natürlich nicht. Jetzt suchen wir uns Ecken mit einer weißen
             Seite, und drehen es an sein Platz. Dann hältst du den Würfel so, dass diese Ecke rechts-oben ist.
         </p>
         <img src="images/white_corner_insert_thrice.jpg" style=" height: 300px; padding: 15px;">
         <p>
-            Dann führst du diesen Algorithmus aus, bis die Ecke an ihrem Platz ist und die weiße Seite nach unten zeigt: <kbd>R U R’ U’</kbd>. 
+            Dann führst du diesen Algorithmus aus, bis die Ecke an ihrem Platz ist und die weiße Seite nach unten zeigt: <kbd>R U R’ U’</kbd>.
             Es kann sein, dass du den Algorithmus mehrmals ausführen musst. Wichtig ist hierbei, dass du den Würfel immer in der gleichen Position behältst.
         </p>
         <img src="images/white_corner_insert_thrice_done.jpg" style=" height: 300px; padding: 15px;">
@@ -151,8 +192,8 @@
     <div>
         <h2>Zweite Ebene</h2>
         <p>
-            Jetzt vervollständigen wir die zweite Ebene. 
-            Hier gibt es nur zwei Algorithmen, die aber nur eine Aneinanderreihung der eben gelernten sind. 
+            Jetzt vervollständigen wir die zweite Ebene.
+            Hier gibt es nur zwei Algorithmen, die aber nur eine Aneinanderreihung der eben gelernten sind.
             Der erste Fall ist, dass du die Kante nach links einfügen willst.
         </p>
         <img src="images/edge_insert_left.jpg" style=" height: 300px; padding: 15px;">
@@ -213,8 +254,8 @@
         </p>
         <img src="images/yellow_dot.jpg" style=" height: 300px; padding: 15px;">
         <p>
-            Wenn du den Würfel richtig hältst und nicht bereits beim Kreuz bist, führst du nun den Algorithmus <kbd>F R U R' U' F'</kbd> aus. 
-            Danach landest du bei einem der anderen Fälle. Dreh den Würfel also wieder richtig und führe den Algorithmus weitere Male aus, 
+            Wenn du den Würfel richtig hältst und nicht bereits beim Kreuz bist, führst du nun den Algorithmus <kbd>F R U R' U' F'</kbd> aus.
+            Danach landest du bei einem der anderen Fälle. Dreh den Würfel also wieder richtig und führe den Algorithmus weitere Male aus,
             bis du beim gelben Kreuz angelangt bist.
         </p>
         <hr>
@@ -222,10 +263,10 @@
     <div>
         <h2>Gelbe Kanten</h2>
         <p>
-            Höchstwahrscheinlich sind die gelben Kanten nicht bereits an den richtigen Stellen. In diesem Fall müssen wir dies beheben. 
+            Höchstwahrscheinlich sind die gelben Kanten nicht bereits an den richtigen Stellen. In diesem Fall müssen wir dies beheben.
             Wenn du U ein paar Male drehst, siehst du, dass zwei Kanten bereits richtig liegen. Entweder sind diese nebeneinander, oder sie liegen gegenüber von einander.
             <br><br>
-            1. Die Kanten liegen nebeneinander. Halte den Würfel so, dass die richtigen Kanten rechts und hinten liegen. Dann führst du <kbd>R U R' U R U2 R' U</kbd> aus. 
+            1. Die Kanten liegen nebeneinander. Halte den Würfel so, dass die richtigen Kanten rechts und hinten liegen. Dann führst du <kbd>R U R' U R U2 R' U</kbd> aus.
             Die Kanten sollten nun alle richtig sein.<br>
             2. Die Kanten liegen gegenüber voneinander. Es ist egal, wie du den Würfel hältst, und du führst den Algorithmus aus 1 aus. Danach kannst du wieder U drehen,
             bis zwei Kanten richtig liegen, und folgst der Schrittfolge aus 1.
@@ -233,12 +274,12 @@
         <hr>
         <h2>Verschieben der gelben Ecken</h2>
         <p>
-            Nun müssen die gelben Ecken an ihre richtigen Positionen. Dafür suchst du dir eine Ecke, die schon an ihrem richtigen Platz ist, und hältst den Würfel so, 
+            Nun müssen die gelben Ecken an ihre richtigen Positionen. Dafür suchst du dir eine Ecke, die schon an ihrem richtigen Platz ist, und hältst den Würfel so,
             dass die Ecke oben rechts ist.
         </p>
         <img src="images/yellow_corners_orientation.jpg" style=" height: 300px; padding: 15px;">
         <p>
-            Dann führst du den Algorithmus <kbd>U R U' L' U R' U' L</kbd> aus. Es kann sein, dass du dies mehrmals tun musst. Falls du keine Ecke findest, 
+            Dann führst du den Algorithmus <kbd>U R U' L' U R' U' L</kbd> aus. Es kann sein, dass du dies mehrmals tun musst. Falls du keine Ecke findest,
             die bereits an ihrem richtigen Platz ist, führst du den Algorithmus von einer beliebigen Stelle aus und suchst dir danach eine korrekte Ecke.
         </p>
         <hr>
@@ -246,13 +287,13 @@
     <div>
         <h2>Drehen der gelben Ecken</h2>
         <p>
-            Jetzt sind alle Ecken an der richtigen Stelle, sie müssen nur noch richtig gedreht werden. Drehe dafür den Würfel so, 
+            Jetzt sind alle Ecken an der richtigen Stelle, sie müssen nur noch richtig gedreht werden. Drehe dafür den Würfel so,
             dass wieder die weiße Seite nach oben zeigt, und eine ungelöste Ecke nach unten rechts.
         </p>
         <img src="images/white_on_top.jpg" style=" height: 300px; padding: 15px;">
         <p>
             Nun führst du den gleichen Algorithmus wie am Anfang aus, <kbd>R U R' U'</kbd>, bis die gelbe Seite nach unten zeigt. Wichtig ist, dass hier <kbd>L' U' L U</kbd> nicht funktioniert.
-            Wenn die gelbe Seite nach unten zeigt, drehst du <b>nur</b> <kbd>D'</kbd>, nicht den ganzen Würfel, sodass wieder eine ungelöste Ecke unten rechts ist. Dies wiederholst du, 
+            Wenn die gelbe Seite nach unten zeigt, drehst du <b>nur</b> <kbd>D'</kbd>, nicht den ganzen Würfel, sodass wieder eine ungelöste Ecke unten rechts ist. Dies wiederholst du,
             bis der Würfel gelöst ist.
         </p>
         <img src="images/solved_cube.jpg" style=" height: 300px; padding: 15px;">
@@ -261,4 +302,7 @@
         </p>
     </div>
 </body>
+<footer>
+  <a href="./kontaktformular.html">Kontakt</a>
+</footer>
 </html>
