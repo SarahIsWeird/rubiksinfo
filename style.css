@@ -11,20 +11,13 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 /* header styles */
 
 header {
   width: 100%;
+  height: 7em;
   margin: 0;
-  /* padding: 0 0 0 2em; */
   display: flex;
-  flex-direction: row;
   align-items: stretch;
   background-color: #151515;
 }
@@ -35,21 +28,12 @@ header a:visited {
   text-decoration: none;
 }
 
-footer {
-  height: 40px;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .nav {
   padding: 1em;
   margin-left: 2em;
 }
 
 .nav-body {
-  /* width: 12.5%; */
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -64,10 +48,25 @@ footer {
 
 /* body styles */
 
+.wrapper {
+  height: calc(100% - 7em);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .content {
   width: max(70vw, 500px);
   padding-left: calc((100% - max(70vw, 500px)) / 2);
   padding-right: calc((100% - max(70vw, 500px)) / 2);
+}
+
+.footer {
+  height: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flex-row {
@@ -131,7 +130,3 @@ fieldset label {
     vertical-align: top;
 }
 /* footer styles */
-
-footer {
-  bottom: 0;
-}
