@@ -64,14 +64,16 @@ header a:visited {
 .footer {
   height: 40px;
   min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.flex-row {
+.flex {
   display: flex;
   flex-direction: row;
+}
+
+.centering {
+  justify-content: center;
+  align-items: center;
 }
 
 .div-img-container {
@@ -94,6 +96,10 @@ header a:visited {
 
 .text {
   padding: 0 15px 0 15px;
+}
+
+.text-left {
+  text-align: left;
 }
 
 kbd {
