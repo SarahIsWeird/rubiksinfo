@@ -73,8 +73,12 @@ header a:visited {
   margin-bottom: auto;
 }
 
-.content-spacer {
+.content-spacer-1 {
   width: 50%;
+}
+
+.content-spacer-2 {
+  min-width: 100px;
 }
 
 .flex-row {
@@ -82,12 +86,18 @@ header a:visited {
   flex-direction: row;
 }
 
-.div-img-container {
-  width: 330px;
+.flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.centering {
+  justify-content: center;
   align-items: center;
-  justify-content: space-around;
+}
+
+.img-container {
+  min-width: 330px;
 }
 
 .img {
@@ -101,7 +111,7 @@ header a:visited {
 }
 
 .text {
-  padding: 0 15px 0 15px;
+  padding: 15px;
 }
 
 kbd {
