@@ -2,8 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Rubik's Info</title>
+    <title>Kontaktformular</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <header>
@@ -23,7 +22,24 @@
       </div>
     </div>
   </header>
-  <body></body>
+  <body>
+    <h2>Kontaktformular</h2>
+    <form>
+      <fieldset>
+        <label for="name">Name</label>
+        <input id="name" type="text" name="Name" required />
+      </fieldset>
+      <fieldset>
+        <label for="email">E-Mail</label>
+        <input id="email" type="email" name="E-Mail" required />
+      </fieldset>
+      <fieldset>
+        <label for="nachricht">Nachricht</label>
+        <textarea id="nachricht" rows="3" name="Nachricht" required></textarea>
+      </fieldset>
+      <input type="submit" value="Absenden" />
+    </form>
+  </body>
   <footer>
     <a href="./kontaktformular.html">Kontakt</a>
   </footer>
