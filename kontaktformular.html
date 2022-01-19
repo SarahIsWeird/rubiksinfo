@@ -1,25 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Kontaktformular</title>
-</head>
-<body>
-<h1>Kontaktformular</h1>
-<form>
-    <fieldset>
-            <label for="name">Name</label>
-            <input id="name" type="text" name="Name" required>
-    </fieldset>
-    <fieldset>
-            <label for="email">E-Mail</label>
-            <input id="email" type="email" name="E-Mail" required>
-    </fieldset>
-    <fieldset>
-            <label for="nachricht">Nachricht</label>
-            <textarea id="nachricht" rows="3" name="Nachricht" required></textarea>
-    </fieldset>
-        <input type="submit" value="Absenden">
-</form>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <header>
+    <h1>Rubiks Info</h1>
+    <div style="display: flex; flex-direction: row">
+      <div style="padding: 10px">
+        <a href="./index.html">Start</a>
+      </div>
+      <div style="padding: 10px">
+        <a href="./geschichte.html">Geschichte</a>
+      </div>
+      <div style="padding: 10px">
+        <a href="./arten.html">Arten</a>
+      </div>
+      <div style="padding: 10px">
+        <a href="./loesen.html">Lösung</a>
+      </div>
+    </div>
+  </header>
+  <body>
+    <h2>Kontaktformular</h2>
+    <form>
+      <fieldset>
+        <label for="name">Name</label>
+        <input id="name" type="text" name="Name" required />
+      </fieldset>
+      <fieldset>
+        <label for="email">E-Mail</label>
+        <input id="email" type="email" name="E-Mail" required />
+      </fieldset>
+      <fieldset>
+        <label for="nachricht">Nachricht</label>
+        <textarea id="nachricht" rows="3" name="Nachricht" required></textarea>
+      </fieldset>
+      <input type="submit" value="Absenden" />
+    </form>
+  </body>
+  <footer>
+    <a href="./kontaktformular.html">Kontakt</a>
+  </footer>
 </html>
