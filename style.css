@@ -11,6 +11,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 /* header styles */
 
 header {
