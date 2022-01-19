@@ -101,6 +101,21 @@ table th {
   border: thin solid grey;
 }
 
+fieldset {
+    padding: 1em 0;
+    border: 0;
+}
+fieldset label {
+    display: inline-block;
+    width: 3em;
+}
+.contactFormInput {
+   margin-left: 3em;
+}
+.contactForm textarea {
+    width: 50%;
+    vertical-align: top;
+}
 /* footer styles */
 
 footer {
