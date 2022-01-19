@@ -61,12 +61,20 @@ header a:visited {
   padding-right: calc((100% - max(70vw, 500px)) / 2);
 }
 
-.footer {
-  height: 40px;
-  min-height: 40px;
+.content-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.content-row p {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.content-spacer {
+  width: 50%;
 }
 
 .flex-row {
@@ -104,6 +112,7 @@ table {
   border: thin solid grey;
   border-collapse: collapse;
 }
+
 table * {
   padding: 0.25em;
   text-align: center;
@@ -118,15 +127,27 @@ fieldset {
   padding: 1em 0;
   border: 0;
 }
+
 fieldset label {
   display: inline-block;
   width: 3em;
 }
+
 .contactFormInput {
   margin-left: 3em;
 }
+
 .contactForm textarea {
   width: 50%;
   vertical-align: top;
 }
+
 /* footer styles */
+
+.footer {
+  height: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
