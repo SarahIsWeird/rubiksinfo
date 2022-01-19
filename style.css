@@ -98,6 +98,10 @@ header a:visited {
   padding: 0 15px 0 15px;
 }
 
+.text-left {
+  text-align: left;
+}
+
 kbd {
   font-size: large;
 }
