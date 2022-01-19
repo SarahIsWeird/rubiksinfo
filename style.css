@@ -4,8 +4,8 @@
 
 html,
 body {
-  height: 100vh;
-  min-height: 100vh;
+  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
@@ -20,7 +20,7 @@ body {
 /* header styles */
 
 header {
-  width: 100vw;
+  width: 100%;
   margin: 0;
   /* padding: 0 0 0 2em; */
   display: flex;
@@ -66,8 +66,8 @@ footer {
 
 .content {
   width: max(70vw, 500px);
-  padding-left: calc((100vw - max(70vw, 500px)) / 2);
-  padding-right: calc((100vw - max(70vw, 500px)) / 2);
+  padding-left: calc((100% - max(70vw, 500px)) / 2);
+  padding-right: calc((100% - max(70vw, 500px)) / 2);
 }
 
 .flex-row {
