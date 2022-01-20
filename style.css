@@ -11,6 +11,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+a:link,
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
 /* header styles */
 
 header {
@@ -127,6 +133,10 @@ header a:visited {
 
 kbd {
   font-size: large;
+}
+
+.padding-15 {
+  padding: 15px;
 }
 
 table {
