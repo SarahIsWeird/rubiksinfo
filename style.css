@@ -129,6 +129,10 @@ kbd {
   font-size: large;
 }
 
+.padding-15 {
+  padding: 15px;
+}
+
 table {
   border: thin solid grey;
   border-collapse: collapse;

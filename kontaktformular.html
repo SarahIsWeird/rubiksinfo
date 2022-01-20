@@ -22,41 +22,46 @@
     </div>
   </header>
   <body>
-    <div class="content">
-      <h2>Kontaktformular</h2>
-      <form class="contactForm">
-        <fieldset>
-          <label for="name">Name:</label>
-          <input
-            id="name"
-            type="text"
-            name="Name"
-            class="contactFormInput"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label for="email">E-Mail:</label>
-          <input
-            id="email"
-            type="email"
-            name="E-Mail"
-            class="contactFormInput"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label for="nachricht">Nachricht:</label>
-          <textarea
-            id="nachricht"
-            rows="5"
-            name="Nachricht"
-            class="contactFormInput"
-            required
-          ></textarea>
-        </fieldset>
-        <input type="submit" value="Absenden" />
-      </form>
+    <div class="wrapper">
+      <div class="content">
+        <h2>Kontaktformular</h2>
+        <form class="contactForm">
+          <fieldset>
+            <label for="name">Name:</label>
+            <input
+              id="name"
+              type="text"
+              name="Name"
+              class="contactFormInput"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label for="email">E-Mail:</label>
+            <input
+              id="email"
+              type="email"
+              name="E-Mail"
+              class="contactFormInput"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <label for="nachricht">Nachricht:</label>
+            <textarea
+              id="nachricht"
+              rows="5"
+              name="Nachricht"
+              class="contactFormInput"
+              required
+            ></textarea>
+          </fieldset>
+          <input type="submit" value="Absenden" />
+        </form>
+      </div>
+      <div class="footer flex centering">
+        <a href="./impressum.html" class="padding-15">Impressum</a>
+      </div>
     </div>
   </body>
 </html>
