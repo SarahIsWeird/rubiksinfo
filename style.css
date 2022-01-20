@@ -33,10 +33,6 @@ header a:visited {
   margin-left: 2em;
 }
 
-.nav h1 {
-  color: white;
-}
-
 .nav-body {
   display: flex;
   flex-direction: row;
