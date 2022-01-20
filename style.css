@@ -11,6 +11,12 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+a:link,
+a:visited {
+  color: blue;
+  text-decoration: none;
+}
+
 /* header styles */
 
 header {
