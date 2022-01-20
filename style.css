@@ -91,11 +91,6 @@ header a:visited {
   align-items: center;
 }
 
-flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
 .centering {
   justify-content: center;
   align-items: center;
@@ -170,6 +165,12 @@ fieldset label {
 .contactForm textarea {
   width: 50%;
   vertical-align: top;
+}
+
+.type-img {
+  width: min(250px, calc(100% - 30px));
+  height: min(250px, calc(100% - 30px));
+  padding: 15px;
 }
 
 /* footer styles */
