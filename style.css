@@ -135,8 +135,8 @@ kbd {
   font-size: large;
 }
 
-.padding-15 {
-  padding: 15px;
+.elem-pad-footer {
+  padding: 10px 15px;
 }
 
 table {
