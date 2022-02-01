@@ -1,67 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Kontaktformular</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <header>
-    <div class="nav">
-      <a href="./index.html"><h1>Rubik's Info</h1></a>
-    </div>
-    <div class="nav nav-body">
-      <div>
-        <a href="./geschichte.html">Geschichte</a>
-      </div>
-      <div>
-        <a href="./arten.html">Arten</a>
-      </div>
-      <div>
-        <a href="./loesen.html">Lösung</a>
-      </div>
-    </div>
-  </header>
-  <body>
-    <div class="wrapper">
-      <div class="content">
-        <h2>Kontaktformular</h2>
-        <form class="contactForm">
-          <fieldset>
-            <label for="name">Name:</label>
-            <input
-              id="name"
-              type="text"
-              name="Name"
-              class="contactFormInput"
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label for="email">E-Mail:</label>
-            <input
-              id="email"
-              type="email"
-              name="E-Mail"
-              class="contactFormInput"
-              required
-            />
-          </fieldset>
-          <fieldset>
-            <label for="nachricht">Nachricht:</label>
-            <textarea
-              id="nachricht"
-              rows="5"
-              name="Nachricht"
-              class="contactFormInput"
-              required
-            ></textarea>
-          </fieldset>
-          <input type="submit" value="Absenden" />
-        </form>
-      </div>
-      <div class="footer flex centering">
-        <a href="./impressum.html" class="elem-pad-footer">Impressum</a>
-      </div>
-    </div>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Kontaktformular</title>
+    </head>
+    <body>
+        <header>
+            <div class="nav">
+                <a href="./index.html"><h1>Rubik's Info</h1></a>
+            </div>
+            <div class="nav nav-body">
+                <div>
+                    <a href="./geschichte.html">Geschichte</a>
+                </div>
+                <div>
+                    <a href="./arten.html">Arten</a>
+                </div>
+                <div>
+                    <a href="./loesen.html">Lösung</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="full">
+                <h2>Kontaktformular</h2>
+                <form class="contactForm">
+                    <fieldset>
+                        <label for="name">Name:</label>
+                        <input id="name" type="text" name="Name" class="contactFormInput" required />
+                    </fieldset>
+                    <fieldset>
+                        <label for="email">E-Mail:</label>
+                        <input id="email" type="email" name="E-Mail" class="contactFormInput" required />
+                    </fieldset>
+                    <fieldset>
+                        <label for="nachricht">Nachricht:</label>
+                        <textarea id="nachricht" rows="5" name="Nachricht" class="contactFormInput" required></textarea>
+                    </fieldset>
+                    <input type="submit" value="Absenden" />
+                </form>
+            </div>
+        </main>
+        <footer class="flex centering">
+            <a href="./impressum.html" class="elem-pad-footer">Impressum</a>
+        </footer>
+    </body>
 </html>
