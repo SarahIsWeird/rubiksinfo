@@ -1,9 +1,11 @@
 FROM node:14.18.1-alpine3.13
 WORKDIR /
 
-COPY package.json .
+RUN apk add --no-cache git
+RUN git clone https://github.com/SarahIsWeird/rubiksinfo
+WORKDIR /rubiksinfo
+RUN git checkout docker
 RUN npm install
-COPY . .
 EXPOSE 8080
 CMD ["npm","start"]
 
