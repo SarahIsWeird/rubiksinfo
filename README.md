@@ -13,4 +13,4 @@ docker build . -t rubiksimage:1.0
 
 to run the container: 
 
-docker run -d -p 8080:8080 --name rubiksinfocontainer frontendimage:1.0
+docker run -d -p 8080:8080 --name rubiksinfocontainer rubiksimage:1.0
