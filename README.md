@@ -4,13 +4,13 @@ This is a web page written for the HWR module 4-3131-TIT20A. In it's current ite
 
 Since it's been written in the span of about a week, this website isn't as fleshed out as other projects might be, so don't expect a very modern website. However, if you still want to take a look at it, feel free to do so at https://rubiksinfo.de.
 
-# Docker
+## Docker
 
 If you want to run the web page in a docker container, you can run these commands: 
 to build the image: 
 
-docker build . -t frontendimage:1.0
+docker build . -t rubiksimage:1.0
 
 to run the container: 
 
-docker run -d -p 8080:8080 --name frontendcontainer frontendimage:1.0
+docker run -d -p 8080:8080 --name rubiksinfocontainer rubiksimage:1.0
