@@ -10,6 +10,8 @@ import { Navbar } from './components/navbar/navbar';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import './App.css';
+import {LoginPage} from './components/routes/loginPage';
+import {RegistrationPage} from './components/routes/registrationPage';
 
 const GlobalStyle = createGlobalStyle`
     html, body {
@@ -58,6 +60,8 @@ const App = () => (
                 <Route path="/loesen" element={<SolvePage />} />
                 <Route path="/kontakt" element={<ContactPage />} />
                 <Route path="/impressum" element={<ImprintPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/registrierung" element={<RegistrationPage />} />
             </Routes>
         </Main>
         <Footer />
