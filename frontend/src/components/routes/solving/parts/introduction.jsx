@@ -1,5 +1,7 @@
+import {WideParagraph} from '../../../article/paragraph';
+
 export const Introduction = () => (
-    <div className="full">
+    <WideParagraph>
         <h2>Rubik’s Cube lösen</h2>
         <p>
             Du hast deinen Rubik’s Cube durcheinandergemischt, bekommst ihn aber
@@ -13,5 +15,5 @@ export const Introduction = () => (
             allerdings relativ einfach.
         </p>
         <hr/>
-    </div>
+    </WideParagraph>
 );

@@ -1,5 +1,7 @@
+import {WideParagraph} from '../../../article/paragraph';
+
 export const Sources = () => (
-    <div className="full">
+    <WideParagraph>
         <hr/>
         <h3>4. Quellen</h3>
         <p>
@@ -15,5 +17,5 @@ export const Sources = () => (
             <a href="https://www.sueddeutsche.de/wirtschaft/rubik-zauberwuerfel-1.4777930">Süddeutsche Zeitung</a>,
             Abrufdatum: 18.01.2022 <br/>
         </p>
-    </div>
+    </WideParagraph>
 );

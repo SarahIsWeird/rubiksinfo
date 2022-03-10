@@ -1,5 +1,7 @@
+import {WideParagraph} from '../article/paragraph';
+
 export const IndexPage = () => (
-    <div className="full">
+    <WideParagraph>
         <h2>Willkommen bei Rubik's Info</h2>
         <p>
             Hier kannst Du dich über die Geschichte des Rubik’s Cube informieren
@@ -8,5 +10,5 @@ export const IndexPage = () => (
             doch mal einen Blick auf die Lösungsseite! Bei Problemen oder Anregungen
             schreib uns gerne über das Kontaktformular. Das findest Du auf jeder Seite unten.
         </p>
-    </div>
+    </WideParagraph>
 );

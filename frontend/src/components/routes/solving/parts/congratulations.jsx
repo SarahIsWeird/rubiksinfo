@@ -1,8 +1,10 @@
+import {WideParagraph} from '../../../article/paragraph';
+
 export const Congratulations = () => (
-    <div className="full">
+    <WideParagraph>
         <p>
             Herzlichen Glückwunsch, Du hast soeben deinen ersten Rubik's Cube
             gelöst!
         </p>
-    </div>
+    </WideParagraph>
 );

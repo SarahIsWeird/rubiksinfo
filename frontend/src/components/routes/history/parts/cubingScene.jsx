@@ -1,10 +1,13 @@
+import {ShortParagraph, WideParagraph} from '../../../article/paragraph';
+import {RightImage} from '../../../article/image';
+
 export const CubingScene = () => (
     <>
-        <div className="full">
+        <WideParagraph>
             <hr/>
             <h3>3. Cubing-Szene</h3>
-        </div>
-        <div className="text-short">
+        </WideParagraph>
+        <ShortParagraph>
             <p>
                 Heute gibt es eine weltweite Cubing-Szene, repräsentiert und
                 organisiert duch die <a href="https://www.worldcubeassociation.org/about">
@@ -25,13 +28,13 @@ export const CubingScene = () => (
                 dem Lösen eines 3x3x3-Cubes gibt es noch viele andere Disziplinen,
                 bei denen <a href="arten.html">anderen Arten von Würfeln</a> gelöst werden.
             </p>
-        </div>
-        <div className="image-2">
+        </ShortParagraph>
+        <RightImage>
             <img src="images/competition.jpg" className="img"/>
             <p>
                 Ein Speedcubing-Wettbewerb.
                 <a href="https://mediaserver.responsesource.com/press-release/81308/Max+Park+in+competition.jpg">Quelle</a>
             </p>
-        </div>
+        </RightImage>
     </>
 );
