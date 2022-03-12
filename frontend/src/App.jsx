@@ -7,9 +7,9 @@ import { SolvePage } from './components/routes/solving/solvePage';
 import { ContactPage } from './components/routes/contactPage';
 import { ImprintPage } from './components/routes/imprintPage';
 import { Navbar } from './components/navbar/navbar';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import './App.css';
-import styled, {createGlobalStyle} from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     html, body {
