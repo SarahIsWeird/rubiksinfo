@@ -1,24 +1,24 @@
+import {ShortParagraph, WideParagraph} from '../../../article/paragraph';
+import {RightImage} from '../../../article/image';
+
 export const RotateYellowCorners = () => (
     <>
-        <div className="full">
+        <WideParagraph>
             <hr/>
             <h3>Drehen der gelben Ecken</h3>
-        </div>
-        <div className="text-short">
+        </WideParagraph>
+        <ShortParagraph>
             <p>
                 Jetzt sind alle Ecken an der richtigen Stelle, sie müssen nur noch
                 richtig gedreht werden. Drehe dafür den Würfel so, dass wieder die
                 weiße Seite nach oben zeigt, und eine ungelöste Ecke nach unten
                 rechts.
             </p>
-        </div>
-        <div className="image-2">
-            <img
-                src="images/white_on_top.jpg"
-                className="solve-image"
-            />
-        </div>
-        <div className="text-short">
+        </ShortParagraph>
+        <RightImage>
+            <img src="images/white_on_top.jpg" />
+        </RightImage>
+        <ShortParagraph>
             <p>
                 Nun führst Du den gleichen Algorithmus wie am Anfang aus,
                 <kbd>R U R' U'</kbd>, bis die gelbe Seite nach unten zeigt.
@@ -28,12 +28,9 @@ export const RotateYellowCorners = () => (
                 ungelöste Ecke unten rechts ist. Dies wiederholst du, bis der
                 Würfel gelöst ist.
             </p>
-        </div>
-        <div className="image-2">
-            <img
-                src="images/solved_cube.jpg"
-                className="solve-image"
-            />
-        </div>
+        </ShortParagraph>
+        <RightImage>
+            <img src="images/solved_cube.jpg" />
+        </RightImage>
     </>
 );

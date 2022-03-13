@@ -1,20 +1,45 @@
+import styled from 'styled-components';
+import {WideParagraph} from '../article/paragraph';
+
+const FieldSet = styled.fieldset`
+    padding: 1em 0;
+    border: 0;
+  
+    label {
+        display: inline-block;
+        width: 3em;
+    }
+`;
+
+const FormInput = styled.input`
+    width: 50%;
+    vertical-align: top;
+    margin-left: 3em;
+`;
+
+const FormTextArea = styled.textarea`
+    width: 50%;
+    vertical-align: top;
+    margin-left: 3em;
+`;
+
 export const ContactPage = () => (
-    <div className="full">
+    <WideParagraph>
         <h2>Kontaktformular</h2>
-        <form className="contactForm">
-            <fieldset>
+        <form>
+            <FieldSet>
                 <label htmlFor="name">Name:</label>
-                <input id="name" type="text" name="Name" className="contactFormInput" required/>
-            </fieldset>
-            <fieldset>
+                <FormInput id="name" type="text" name="Name" required/>
+            </FieldSet>
+            <FieldSet>
                 <label htmlFor="email">E-Mail:</label>
-                <input id="email" type="email" name="E-Mail" className="contactFormInput" required/>
-            </fieldset>
-            <fieldset>
+                <FormInput id="email" type="email" name="E-Mail" required/>
+            </FieldSet>
+            <FieldSet>
                 <label htmlFor="nachricht">Nachricht:</label>
-                <textarea id="nachricht" rows="5" name="Nachricht" className="contactFormInput" required></textarea>
-            </fieldset>
+                <FormTextArea id="nachricht" rows="5" name="Nachricht" required />
+            </FieldSet>
             <input type="submit" value="Absenden"/>
         </form>
-    </div>
+    </WideParagraph>
 );

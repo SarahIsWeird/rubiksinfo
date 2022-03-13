@@ -1,4 +1,5 @@
-
+import {WideParagraph} from '../../../article/paragraph';
+import {Table, TableBody, TableHead} from '../../../article/table';
 
 const NotationIntroduction = () => (
     <p>
@@ -12,43 +13,45 @@ const NotationIntroduction = () => (
 );
 
 const NotationTable = () => (
-    <table border="1" align="center">
-        <tr>
+    <Table>
+        <TableHead>
             <th>Buchstabe</th>
             <th>Englischer Name</th>
             <th>Deutscher Name</th>
-        </tr>
-        <tr>
-            <td><kbd>L</kbd></td>
-            <td>Left</td>
-            <td>Links</td>
-        </tr>
-        <tr>
-            <td><kbd>R</kbd></td>
-            <td>Right</td>
-            <td>Rechts</td>
-        </tr>
-        <tr>
-            <td><kbd>U</kbd></td>
-            <td>Up</td>
-            <td>Oben</td>
-        </tr>
-        <tr>
-            <td><kbd>D</kbd></td>
-            <td>Down</td>
-            <td>Unten</td>
-        </tr>
-        <tr>
-            <td><kbd>F</kbd></td>
-            <td>Front</td>
-            <td>Vorne</td>
-        </tr>
-        <tr>
-            <td><kbd>B</kbd></td>
-            <td>Back</td>
-            <td>Hinten</td>
-        </tr>
-    </table>
+        </TableHead>
+        <TableBody>
+            <tr>
+                <td><kbd>L</kbd></td>
+                <td>Left</td>
+                <td>Links</td>
+            </tr>
+            <tr>
+                <td><kbd>R</kbd></td>
+                <td>Right</td>
+                <td>Rechts</td>
+            </tr>
+            <tr>
+                <td><kbd>U</kbd></td>
+                <td>Up</td>
+                <td>Oben</td>
+            </tr>
+            <tr>
+                <td><kbd>D</kbd></td>
+                <td>Down</td>
+                <td>Unten</td>
+            </tr>
+            <tr>
+                <td><kbd>F</kbd></td>
+                <td>Front</td>
+                <td>Vorne</td>
+            </tr>
+            <tr>
+                <td><kbd>B</kbd></td>
+                <td>Back</td>
+                <td>Hinten</td>
+            </tr>
+        </TableBody>
+    </Table>
 );
 
 const NotationVisualization = () => (
@@ -88,12 +91,12 @@ const NotationTurning = () => (
 );
 
 export const Notation = () => (
-    <div className="full">
+    <WideParagraph>
         <h3>Notation</h3>
         <NotationIntroduction />
         <NotationTable />
         <NotationVisualization />
         <NotationTurning />
         <hr/>
-    </div>
+    </WideParagraph>
 );

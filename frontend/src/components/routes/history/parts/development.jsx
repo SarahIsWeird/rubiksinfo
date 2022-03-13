@@ -1,5 +1,7 @@
+import {WideParagraph} from '../../../article/paragraph';
+
 export const Development = () => (
-    <div className="full">
+    <WideParagraph>
         <h3>1. Entstehung</h3>
         <p>
             Der Rubik's Cube oder auch Zauberwürfel wurde 1974 vom ungarischen
@@ -10,5 +12,5 @@ export const Development = () => (
             Lösung ergibt.
         </p>
         <hr/>
-    </div>
+    </WideParagraph>
 );

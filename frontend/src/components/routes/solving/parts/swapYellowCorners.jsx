@@ -1,11 +1,13 @@
+import {ShortParagraph, WideParagraph} from '../../../article/paragraph';
+import {RightImage} from '../../../article/image';
+
 export const SwapYellowCorners = () => (
     <>
-
-        <div className="full">
+        <WideParagraph>
             <hr/>
             <h3>Gelbe Kanten</h3>
-        </div>
-        <div className="full">
+        </WideParagraph>
+        <WideParagraph>
             <p>
                 Höchstwahrscheinlich sind die gelben Kanten nicht bereits an den
                 richtigen Stellen. In diesem Fall müssen wir dies beheben. Wenn Du U
@@ -22,12 +24,12 @@ export const SwapYellowCorners = () => (
                 kannst Du wieder U drehen, bis zwei Kanten richtig liegen, und
                 folgst der Schrittfolge aus 1.
             </p>
-        </div>
-        <div className="full">
+        </WideParagraph>
+        <WideParagraph>
             <hr/>
             <h3>Verschieben der gelben Ecken</h3>
-        </div>
-        <div className="text-short">
+        </WideParagraph>
+        <ShortParagraph>
             <p>
                 Nun müssen die gelben Ecken an ihre richtigen Positionen. Dafür
                 suchst Du dir eine Ecke, die schon an ihrem richtigen Platz ist,
@@ -38,12 +40,9 @@ export const SwapYellowCorners = () => (
                 Algorithmus von einer beliebigen Stelle aus und suchst dir danach
                 eine korrekte Ecke.
             </p>
-        </div>
-        <div className="image-2">
-            <img
-                src="images/yellow_corners_orientation.jpg"
-                className="solve-image"
-            />
-        </div>
+        </ShortParagraph>
+        <RightImage>
+            <img src="images/yellow_corners_orientation.jpg" />
+        </RightImage>
     </>
 );

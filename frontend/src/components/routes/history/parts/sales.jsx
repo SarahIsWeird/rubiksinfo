@@ -1,9 +1,13 @@
+
+import {ShortParagraph, WideParagraph} from '../../../article/paragraph';
+import {InlineImage, RightImage} from '../../../article/image';
+
 export const Sales = () => (
     <>
-        <div className="full">
+        <WideParagraph>
             <h3>2. Kommerzielle Verbreitung</h3>
-        </div>
-        <div className="text-short">
+        </WideParagraph>
+        <ShortParagraph>
             <p>
                 Der entwickelte Würfel faszinierte die Schüler und Freunde,
                 weshalb Ernő ihn auf den ungarischen Markt bringen wollte. 1977
@@ -29,13 +33,13 @@ export const Sales = () => (
                 erfolgreich ein. Bis 2014 wurde laut “Stern” der Würfel über 350
                 Millionen mal verkauft.
             </p>
-        </div>
-        <div className="image-2">
-            <img src="images/ernoe.jpg" className="img"/>
+        </ShortParagraph>
+        <RightImage>
+            <InlineImage src="images/ernoe.jpg" />
             <p>
                 Ernő Rubik, der Erfinder des Rubik's Cube.
                 <a href="https://cdn.prod.www.manager-magazin.de/images/a3382415-0002-0004-0000-00007b3c2206_w948_r1.778_fpx52_fpy48.jpg">Quelle</a>
             </p>
-        </div>
+        </RightImage>
     </>
 );
