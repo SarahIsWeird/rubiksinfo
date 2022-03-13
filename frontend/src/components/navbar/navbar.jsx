@@ -1,20 +1,7 @@
 import React from 'react'
 import { Nav, NavLink, NavTitle, Bars, NavMenu, NavBtn, NavBtnLink } from './navbarElements'
 import { useLocation } from 'react-router';
-
-const nonReferringPaths = ['/', '/login', '/registrierung'];
-
-const pathCanBeReferrer = (urlPath) =>
-    !nonReferringPaths.includes(urlPath);
-
-const buildConditionalReferrerPath = (destination, currentUrl) => {
-    let destinationWithReferrer = destination;
-
-    if (pathCanBeReferrer(currentUrl))
-        destinationWithReferrer += "?referrer=" + currentUrl;
-
-    return destinationWithReferrer;
-};
+import { buildConditionalReferrerPath } from '../referrals/referralCreation';
 
 const buildLoginPath = (currentUrl) =>
     buildConditionalReferrerPath("/login", currentUrl);
@@ -40,7 +27,7 @@ export const Navbar = () => {
                 </NavLink>
             </NavMenu>
             <NavBtn>
-                <NavBtnLink to={buildLoginPath(currentLocation)}>
+                <NavBtnLink to={ buildLoginPath(currentLocation) }>
                     Login
                 </NavBtnLink>
             </NavBtn>
