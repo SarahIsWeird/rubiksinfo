@@ -44,6 +44,7 @@ function setCookie(res) {
   res.cookie("session", sessionId, cookieParameters);
 }
 
+
 function addFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
@@ -51,7 +52,6 @@ function addFavorite(req, res) {
     res.send();
   } else {
     user.favorites.push(req.content);
-    console.log(user.favorites);
   }
 }
 
