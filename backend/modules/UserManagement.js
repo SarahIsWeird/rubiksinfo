@@ -14,7 +14,7 @@ function register(req) {
     var user = {
         userId: userId,
         name: req.name,
-        password: req.password,
+        passwordHash: req.passwordHash,
         visits: visits,
         favorites: [],
     }
@@ -24,6 +24,6 @@ function register(req) {
 }
 
 function login(req) {
-    return userList.find(user => user.name === req.name && user.password === req.password);
+    return userList.find(user => user.name === req.name && user.passwordHash === req.passwordHash);
 }
 module.exports = {register, login};

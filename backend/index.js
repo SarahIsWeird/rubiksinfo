@@ -23,5 +23,4 @@ app.post("/user/login", (req, res) => {
     } else {
         res.send(user.userId);
     }
-    // res.send(typeof user);
 });
