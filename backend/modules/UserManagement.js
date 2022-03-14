@@ -22,4 +22,8 @@ function register(req) {
     userList.push(user);
     return userId;
 }
-module.exports = {register};
+
+function login(req) {
+    return userList.find(user => user.name === req.name && user.password === req.password);
+}
+module.exports = {register, login};
