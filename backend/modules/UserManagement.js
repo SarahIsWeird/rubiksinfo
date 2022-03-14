@@ -1,6 +1,12 @@
+const express = require('express');
+const cookieParser = require('cookie-parser');
 const { v4: uuidv4 } = require('uuid');
 
+const app = express();
+app.use(cookieParser());
+
 var userList = [];
+const sessions = [];
 
 function register(req) {
     var visits = {
@@ -26,4 +32,13 @@ function register(req) {
 function login(req) {
     return userList.find(user => user.name === req.name && user.passwordHash === req.passwordHash);
 }
-module.exports = {register, login};
+
+function setCookie(res) {
+    const sessionId = uuidv4();
+    sessions.push(sessionId);
+    const cookieParameters = {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    }
+    res.cookie("session", sessionId, cookieParameters);
+}
+module.exports = {register, login, setCookie};

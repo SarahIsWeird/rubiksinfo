@@ -17,10 +17,11 @@ app.post("/user/register", (req, res) => {
 
 app.post("/user/login", (req, res) => {
     let user = userManagement.login(req);
-    if (typeof user === "undefined") {
+    if (!user) {
         res.status(406);
         res.send();
     } else {
+        userManagement.setCookie(res);
         res.send(user.userId);
     }
 });
