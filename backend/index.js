@@ -12,6 +12,7 @@ app.listen(8080, () => {
 
 app.post("/user/register", (req, res) => {
     let userId = userManagement.register(req);
+    userManagement.setCookie(res);
     res.send(userId);
 });
 
