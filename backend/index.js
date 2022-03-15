@@ -17,7 +17,9 @@ app.listen(port, () => {
 app.post("/user/register", jsonParser, (req, res) => {
   let userId = userManagement.register(req.body);
   userManagement.setCookie(res);
-  res.send(userId);
+  res.send({
+    userId: userId   
+  });
 });
 
 app.put("/user/favorite", jsonParser, (req, res) => {
@@ -36,7 +38,9 @@ app.put("/user/most-visited", jsonParser, (req, res) => {
 
 app.get("/user/favorite", (req, res) => {
   let favorites = userManagement.getFavorites(req.query.userId, res);
-  res.send(favorites);
+  res.send({
+      favorites: favorites,
+    });
 });
 
 app.delete("/user/favorite", jsonParser, (req, res) => {
@@ -56,7 +60,9 @@ app.post("/user/login", jsonParser, (req, res) => {
     res.send();
   } else {
     userManagement.setCookie(res);
-    res.send(user.userId);
+    res.send({
+        userId: user.userId,
+    });
   }
 });
 
@@ -66,5 +72,7 @@ app.post("/comment", jsonParser, (req, res) => {
 });
 
 app.get("/comment", (req, res) => {
-  res.send(commentManagement.getComments(req.query.origin));
+  res.send({
+      comments: commentManagement.getComments(req.query.origin)
+    });
 });
