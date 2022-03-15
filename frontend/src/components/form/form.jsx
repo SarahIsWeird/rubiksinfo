@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { WideParagraph } from '../article/paragraph';
 
-const InnerCenteredFormContainer = styled.div`
+const InnerCenteredFormContainer = styled.form`
     width: max-content;
     margin-left: auto;
     margin-right: auto;
@@ -11,10 +11,10 @@ const InnerCenteredFormContainer = styled.div`
     justify-content: center;
 `;
 
-export const CenteredForm = ({ children }) => (
+export const CenteredForm = ({ children, onSubmit }) => (
     <WideParagraph>
-        <InnerCenteredFormContainer>
-            {children}
+        <InnerCenteredFormContainer onSubmit={ onSubmit }>
+            { children }
         </InnerCenteredFormContainer>
     </WideParagraph>
 );
@@ -40,6 +40,8 @@ export const FormButton = styled.button`
         background: lightskyblue;
         color: black;
     }
+  
+    font-size: 1em;
 `;
 
 export const ErrorParagraph = styled.p`

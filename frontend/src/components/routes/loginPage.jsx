@@ -4,10 +4,18 @@ import { useQueryParameters } from '../referrals/hooks/useQueryParameters';
 import { buildRedirectComponentFromQueryParameters } from '../referrals/referralProcessing';
 import { PasswordInput, UsernameInput } from '../form/input';
 import { validateLoginPassword, validateUsername } from '../form/validations';
+import { login } from '../../requests/authentication';
+import { useCookies } from 'react-cookie';
 
 const usernameErrorMessage = (
     <ErrorParagraph>
         Bitte gib deinen Nutzernamen ein.
+    </ErrorParagraph>
+);
+
+const usernameUnknownErrorMessage = (
+    <ErrorParagraph>
+        Dieser Nutzer ist nicht bekannt.
     </ErrorParagraph>
 );
 
@@ -23,10 +31,13 @@ const areAllFieldsValid = (fieldValidations) =>
 export const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [isUsernameValid, setUsernameValid] = useState(true);
+    const [isUsernameKnown, setUsernameKnown] = useState(true);
     const [password, setPassword] = useState('');
     const [isPasswordValid, setPasswordValid] = useState(true);
 
     const [redirect, setRedirect] = useState(null);
+
+    const [, setCookie, ] = useCookies();
 
     const queryParameters = useQueryParameters();
 
@@ -47,18 +58,31 @@ export const LoginPage = () => {
         setRedirect(() => redirectComponent);
     };
 
-    const onSubmit = () => {
+    const onSubmit = async (event) => {
+        event.preventDefault();
+
         const fieldValidations = validateFields();
         setFieldValidations(fieldValidations);
 
         const allFieldsValid = areAllFieldsValid(fieldValidations);
 
-        if (allFieldsValid)
-            redirectUser();
+        if (!allFieldsValid) return;
+
+        const userId = await login(username, password);
+
+        if (userId === null) {
+            setUsernameKnown(false);
+            return;
+        }
+
+        setCookie('userId', userId);
+        setCookie('username', username);
+
+        redirectUser();
     };
 
     return (
-        <CenteredForm>
+        <CenteredForm onSubmit={ onSubmit }>
             <FormField>
                 <h2>Login</h2>
                 <p>Um Kommentare schreiben zu k&ouml;nnen, musst du dich einloggen.</p>
@@ -69,8 +93,9 @@ export const LoginPage = () => {
                 <UsernameInput
                     value={ username }
                     setValue={ setUsername }
-                    isValid={ isUsernameValid } />
+                    isValid={ isUsernameValid && isUsernameKnown } />
                 { isUsernameValid ? null : usernameErrorMessage }
+                { isUsernameKnown ? null : usernameUnknownErrorMessage }
             </FormField>
             <FormField>
                 <span>Passwort</span><br />
@@ -81,7 +106,7 @@ export const LoginPage = () => {
                 { isPasswordValid ? null : passwordErrorMessage }
             </FormField>
             <FormField>
-                <FormButton onClick={ onSubmit }>Einloggen</FormButton>
+                <FormButton type="submit">Einloggen</FormButton>
             </FormField>
             { redirect }
         </CenteredForm>

@@ -4,6 +4,8 @@ import { useQueryParameters } from '../referrals/hooks/useQueryParameters';
 import { buildRedirectComponentFromQueryParameters } from '../referrals/referralProcessing';
 import { PasswordInput, UsernameInput } from '../form/input';
 import { validatePasswordConfirmation, validateRegistrationPassword, validateUsername } from '../form/validations';
+import { register } from '../../requests/authentication';
+import { useCookies } from 'react-cookie';
 
 const usernameErrorMessage = (
     <ErrorParagraph>
@@ -37,6 +39,8 @@ export const RegistrationPage = () => {
 
     const [redirect, setRedirect] = useState(null);
 
+    const [, setCookie,] = useCookies();
+
     const queryParameters = useQueryParameters();
 
     const validateFields = () => {
@@ -58,18 +62,26 @@ export const RegistrationPage = () => {
         setRedirect(() => redirectComponent);
     };
 
-    const onSubmit = () => {
+    const onSubmit = async (event) => {
+        event.preventDefault();
+
         const fieldValidations = validateFields();
         setFieldValidations(fieldValidations);
 
         const allFieldsValid = areAllFieldsValid(fieldValidations);
 
-        if (allFieldsValid)
-            redirectUser();
+        if (!allFieldsValid) return;
+
+        const userId = await register(username, password)
+
+        setCookie('userId', userId);
+        setCookie('username', username);
+
+        redirectUser();
     };
 
     return (
-        <CenteredForm>
+        <CenteredForm onSubmit={ onSubmit }>
             <FormField>
                 <h2>Registrierung</h2>
                 <p>Um Kommentare schreiben zu k&ouml;nnen, musst du dich einloggen.</p>
@@ -100,7 +112,7 @@ export const RegistrationPage = () => {
                 { isPasswordConfirmationValid ? null : passwordConfirmationErrorMessage }
             </FormField>
             <FormField>
-                <FormButton onClick={ onSubmit }>Registrieren</FormButton>
+                <FormButton type="submit">Registrieren</FormButton>
             </FormField>
             { redirect }
         </CenteredForm>
