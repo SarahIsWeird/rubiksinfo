@@ -57,3 +57,12 @@ app.post("/user/login", jsonParser, (req, res) => {
     res.send(user.userId);
   }
 });
+
+app.post("/comment", jsonParser, (req, res) => {
+  commentManagement.addComment(req.body);
+  res.send();
+});
+
+app.get("/comment", (req, res) => {
+  res.send(commentManagement.getComments(req.query.origin));
+});
