@@ -8,7 +8,7 @@ const commentManagement = require("./modules/CommentManagement");
 const app = express();
 const port = process.env.RI_BACKEND_PORT || 8080;
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}/`);
 });
 
