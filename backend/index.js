@@ -8,6 +8,8 @@ const commentManagement = require("./modules/CommentManagement");
 const app = express();
 const port = process.env.RI_BACKEND_PORT || 8080;
 
+const userNotFoundStatusCode = 404;
+
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}/`);
 });
@@ -50,7 +52,7 @@ app.delete("/user/logout", (req, res) => {
 app.post("/user/login", jsonParser, (req, res) => {
   let user = userManagement.login(req.body);
   if (!user) {
-    res.status(406);
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     userManagement.setCookie(res);
