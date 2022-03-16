@@ -1,11 +1,5 @@
 import { hashPassword } from "../util/auth";
-
-const commonParameters = {
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    credentials: 'include',
-};
+import { createNullPromise, getRequest } from './common';
 
 const getRegistrationRequestObject = (username, password) => ({
     name: username,
@@ -20,15 +14,6 @@ const getLoginRequestObject = (username, password) => ({
 const getLogoutRequestObject = (userId) => ({
     userId: userId,
 });
-
-const getRequest = (method, requestObject) => ({
-    ...commonParameters,
-    method: method,
-    body: JSON.stringify(requestObject),
-});
-
-const createNullPromise = () =>
-    new Promise((resolve) => resolve(null));
 
 export const register = async (username, password) => {
     const registrationEndpoint = '/api/user/register';
