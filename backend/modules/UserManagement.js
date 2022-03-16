@@ -5,6 +5,8 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cookieParser());
 
+const userNotFoundStatusCode = require("../index").userNotFoundStatusCode;
+
 var userList = [];
 const sessions = [];
 
@@ -49,11 +51,10 @@ function setCookie(res) {
   res.cookie("session", sessionId, cookieParameters);
 }
 
-
 function addFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status(406);
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     user.favorites.push(req.content);
@@ -63,7 +64,7 @@ function addFavorite(req, res) {
 function getFavorites(userId, res) {
   let user = userList.find((user) => user.userId === userId);
   if (!user) {
-    res.status(406);
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     return user.favorites;
@@ -73,7 +74,7 @@ function getFavorites(userId, res) {
 function deleteFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status(406);
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     let find = user.favorites.find((fav) => fav === req.content);
@@ -85,7 +86,7 @@ function deleteFavorite(req, res) {
 function getMostVisitedPage(userId, res) {
   let user = userList.find((user) => user.userId === userId);
   if (!user) {
-    res.status(406);
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     let maxKey;
@@ -103,7 +104,7 @@ function getMostVisitedPage(userId, res) {
 function visitedPage(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status(406);
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     for (key of Object.keys(user.visits)) {
