@@ -1,6 +1,8 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 
+const userManagement = require("./UserManagement");
+
 const app = express();
 
 const comments = [];
@@ -14,7 +16,11 @@ function getComments(origin) {
   let correctPageComments = [];
   for (comment of comments) {
     if (comment.origin === origin) {
-      correctPageComments.push(comment);
+      const commentObject = {
+        ...comment,
+        username: userManagement.getUsernameByUserId(comment.userId),
+      }
+      correctPageComments.push(commentObject);
     }
   }
   return correctPageComments;
