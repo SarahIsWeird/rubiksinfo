@@ -1,7 +1,7 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 
-const userManagement = require("./modules/UserManagement");
+const userManagement = require("./UserManagement");
 
 const app = express();
 
