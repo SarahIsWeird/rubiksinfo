@@ -28,7 +28,9 @@ app.put("/user/favorite", jsonParser, (req, res) => {
 });
 
 app.get("/user/most-visited", (req, res) => {
-  res.send(userManagement.getMostVisitedPage(req.query.userId, res));
+  res.send({
+    content: userManagement.getMostVisitedPage(req.query.userId, res),
+  });
 });
 
 app.put("/user/most-visited", jsonParser, (req, res) => {
