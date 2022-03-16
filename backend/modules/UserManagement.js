@@ -70,9 +70,9 @@ function deleteFavorite(req, res) {
   if (!user) {
     return false;
   } else {
-    let find = user.favorites.find((fav) => fav === req.content);
-    if(find) {
-      favIndex = user.favorites.indexOf(find);
+    let favorite = user.favorites.find((fav) => fav === req.content);
+    if(favorite) {
+      favIndex = user.favorites.indexOf(favorite);
     user.favorites.splice(favIndex, 1);
     return true;
     } else {
