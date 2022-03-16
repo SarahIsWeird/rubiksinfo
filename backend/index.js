@@ -55,8 +55,7 @@ app.post("/auth/login", (req, res) => {
 });
 
 app.delete("/auth/logout", (req, res) => {
-  sessionManagement.removeSession(req.body.sessionId);
-  res.clearCookie("session");
+  sessionManagement.removeSession(req.body.sessionId, res);
   res.send();
 });
 

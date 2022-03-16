@@ -19,11 +19,12 @@ function addSession(res, userId) {
   return sessionId;
 }
 
-function removeSession(sessionId) {
+function removeSession(sessionId, res) {
   let sessionIndex = sessions.findIndex(
     (session) => session.sessionId === sessionId
   );
   sessions.splice(sessionIndex, 1);
+  res.clearCookie("session");
 }
 
 function getUserIdBySessionId(sessionId) {
