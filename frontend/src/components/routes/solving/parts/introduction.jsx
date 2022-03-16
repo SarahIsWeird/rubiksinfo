@@ -1,9 +1,9 @@
 import {WideParagraph} from '../../../article/paragraph';
-import { FavouriteButton } from '../../../favourites/articleFavourites';
+import { ArticleFavouriteButton } from '../../../favourites/articleFavourites';
 
 export const Introduction = () => (
     <WideParagraph>
-        <h2>Rubik’s Cube lösen <FavouriteButton /></h2>
+        <h2>Rubik’s Cube lösen <ArticleFavouriteButton /></h2>
         <p>
             Du hast deinen Rubik’s Cube durcheinandergemischt, bekommst ihn aber
             nicht mehr gelöst? Das ist nicht wunderlich, denn das Lösen eines

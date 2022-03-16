@@ -8,7 +8,7 @@ import { useLocation } from 'react-router';
 const NotFavouriteHeart = AiOutlineHeart;
 
 const FavouriteHeart = styled(AiFillHeart)`
-  color: #ff3030;
+    color: #ff3030;
 `;
 
 const ContainerSpan = styled.span`
@@ -18,32 +18,48 @@ const ContainerSpan = styled.span`
     vertical-align: middle;
 `;
 
-export const FavouriteButton = () => {
+export const FavouriteButton = ({ path, suppressCheck, onRemoveFavourite }) => {
     const [isFavouriteFlag, setFavouriteFlag] = useState(false);
     const [cookies] = useCookies();
-    const location = useLocation();
 
     const onClick = async () => {
         const newIsFavouriteFlag = !isFavouriteFlag;
         setFavouriteFlag(newIsFavouriteFlag);
 
         if (!isFavouriteFlag) {
-            await setFavourite(cookies['userId'], location.pathname);
+            await setFavourite(cookies['userId'], path);
         } else {
-            await removeFavourite(cookies['userId'], location.pathname);
+            await removeFavourite(cookies['userId'], path);
+
+            onRemoveFavourite();
         }
     };
 
     useEffect(async () => {
+        if (suppressCheck === true) {
+            setFavouriteFlag(true);
+            return;
+        }
+
         const favourites = await getFavourites(cookies['userId']);
 
-        const isFavourite = favourites.includes(location.pathname);
+        const isFavourite = favourites.includes(path);
         setFavouriteFlag(isFavourite);
     }, []);
+
+    if (cookies['userId'] === undefined) return null;
 
     return (
         <ContainerSpan onClick={ onClick }>
             { isFavouriteFlag ? <FavouriteHeart /> : <NotFavouriteHeart /> }
         </ContainerSpan>
+    );
+};
+
+export const ArticleFavouriteButton = () => {
+    const location = useLocation();
+
+    return (
+        <FavouriteButton path={ location.pathname } />
     );
 };
