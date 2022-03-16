@@ -4,7 +4,7 @@ var jsonParser = bodyParser.json();
 
 const userManagement = require("./modules/UserManagement");
 const commentManagement = require("./modules/CommentManagement");
-const authManagement = require("./modules/AuthManagement");
+const sessionManagement = require("./modules/SessionManagement");
 
 const app = express();
 const port = process.env.RI_BACKEND_PORT || 8080;
@@ -14,7 +14,7 @@ const userAlreadyExists = 409;
 const notAuthorized = 401;
 
 function isAuthenticated(req, res, next) {
-  if (authManagement.getUserIdBySessionId(req.body.sessionId)) { // mit Cookie statt body?
+  if (sessionManagement.getUserIdBySessionId(req.body.sessionId)) { // mit Cookie statt body?
     next();
   } else {
     res.status(notAuthorized);
@@ -34,7 +34,7 @@ app.listen(port, () => {
 app.post("/auth/register", (req, res) => {
   let userId = userManagement.addUser(req.body);
   if (userId) {
-    let sessionId = authManagement.addSession(res, userId);
+    let sessionId = sessionManagement.addSession(res, userId);
     res.send({ sessionId: sessionId });
   } else {
     res.send(userAlreadyExists);
@@ -44,7 +44,7 @@ app.post("/auth/register", (req, res) => {
 app.post("/auth/login", (req, res) => {
   let userId = userManagement.getUser(req.body);
   if (userId) {
-    authManagement.addSession(res, userId);
+    sessionManagement.addSession(res, userId);
     res.send({
       sessionId: sessionId,
     });
@@ -55,7 +55,7 @@ app.post("/auth/login", (req, res) => {
 });
 
 app.delete("/auth/logout", (req, res) => {
-  authManagement.removeSession(req.body.sessionId);
+  sessionManagement.removeSession(req.body.sessionId);
   res.clearCookie("session");
   res.send();
 });
