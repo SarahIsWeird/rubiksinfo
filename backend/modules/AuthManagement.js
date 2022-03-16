@@ -7,6 +7,7 @@ app.use(cookieParser());
 
 const sessions = [];
 
+
 function addSession(res, userId) {
   const sessionId = uuidv4();
   sessions.push({ sessionId: sessionId, userId: userId });
@@ -25,7 +26,12 @@ function removeSession(sessionId) {
   sessions.splice(sessionIndex, 1);
 }
 
+function getUserIdBySessionId(sessionId) {
+  return sessions.find(session => session.sessionId === sessionId);
+}
+
 module.exports = {
   addSession,
   removeSession,
+  getUserIdBySessionId
 };
