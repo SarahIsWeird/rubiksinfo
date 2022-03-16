@@ -49,7 +49,7 @@ function setCookie(res) {
 function addFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status();
+    res.status(userNotFoundStatusCode);
     res.send();
   } else {
     user.favorites.push(req.content);
