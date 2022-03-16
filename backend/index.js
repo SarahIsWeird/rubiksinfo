@@ -4,6 +4,7 @@ var jsonParser = bodyParser.json();
 
 const userManagement = require("./modules/UserManagement");
 const commentManagement = require("./modules/CommentManagement");
+const authManagement = require("./modules/AuthManagement");
 
 const app = express();
 const port = process.env.RI_BACKEND_PORT || 8080;
@@ -14,14 +15,33 @@ app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}/`);
 });
 
-app.post("/user/register", jsonParser, (req, res) => {
-  let userId = userManagement.register(req.body);
-  userManagement.setCookie(res);
+app.post("/auth/register", jsonParser, (req, res) => {
+  let userId = userManagement.addUser(req.body);
   if (userId) {
-    res.send(userId);
+    let sessionId = authManagement.addSession(res,userId)
+    res.send({ sessionId: sessionId });
   } else {
     res.send(409);
   }
+});
+
+app.post("/auth/login", jsonParser, (req, res) => {
+  let userId = userManagement.login(req.body);
+  if (!userId) {
+    res.status(userNotFoundStatusCode);
+    res.send();
+  } else {
+    authManagement.addSession(res,userId)
+    res.send({
+      sessionId: sessionId,
+    });
+  }
+});
+
+app.delete("/auth/logout", (req, res) => {
+  authManagement.removeSession(req.body.sessionId)
+  res.clearCookie("session");
+  res.send();
 });
 
 app.put("/user/favorite", jsonParser, (req, res) => {
@@ -41,31 +61,13 @@ app.put("/user/most-visited", jsonParser, (req, res) => {
 app.get("/user/favorite", (req, res) => {
   let favorites = userManagement.getFavorites(req.query.userId, res);
   res.send({
-      favorites: favorites,
-    });
+    favorites: favorites,
+  });
 });
 
 app.delete("/user/favorite", jsonParser, (req, res) => {
-  userManagement.deleteFavorite(req.body, res);
+  userManagement.removeFavorite(req.body, res);
   res.send();
-});
-
-app.delete("/user/logout", (req, res) => {
-  res.clearCookie("session");
-  res.send();
-});
-
-app.post("/user/login", jsonParser, (req, res) => {
-  let user = userManagement.login(req.body);
-  if (!user) {
-    res.status(userNotFoundStatusCode);
-    res.send();
-  } else {
-    userManagement.setCookie(res);
-    res.send({
-        userId: user.userId,
-    });
-  }
 });
 
 app.post("/comment", jsonParser, (req, res) => {
@@ -75,6 +77,6 @@ app.post("/comment", jsonParser, (req, res) => {
 
 app.get("/comment", (req, res) => {
   res.send({
-      comments: commentManagement.getComments(req.query.origin)
-    });
+    comments: commentManagement.getComments(req.query.origin),
+  });
 });

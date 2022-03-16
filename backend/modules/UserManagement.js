@@ -5,13 +5,17 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cookieParser());
 
-const userNotFoundStatusCode = require("../index").userNotFoundStatusCode;
+const userNotFoundStatusCode = 404;
+//require("../index").userNotFoundStatusCode
 
 var userList = [];
-const sessions = [];
 
-function register(req) {
-  const userExists = userList.find(user => user.name === req.name);
+function getUser(req) {
+  return userList.find((user) => user.name === req.name);
+}
+
+function addUser(req) {
+  const userExists = userList.find((user) => user.name === req.name);
   if (userExists) {
     return undefined;
   }
@@ -36,21 +40,6 @@ function register(req) {
   return userId;
 }
 
-function login(req) {
-  return userList.find(
-    (user) => user.name === req.name && user.passwordHash === req.passwordHash
-  );
-}
-
-function setCookie(res) {
-  const sessionId = uuidv4();
-  sessions.push(sessionId);
-  const cookieParameters = {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  };
-  res.cookie("session", sessionId, cookieParameters);
-}
-
 function addFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
@@ -71,7 +60,7 @@ function getFavorites(userId, res) {
   }
 }
 
-function deleteFavorite(req, res) {
+function removeFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     res.status(userNotFoundStatusCode);
@@ -116,12 +105,11 @@ function visitedPage(req, res) {
 }
 
 module.exports = {
-  register,
-  login,
-  setCookie,
   getFavorites,
   addFavorite,
-  deleteFavorite,
+  addUser,
+  getUser,
+  deleteFavorite: removeFavorite,
   getMostVisitedPage,
   visitedPage,
 };
