@@ -31,7 +31,7 @@ app.get("/user/most-visited", (req, res) => {
   res.send(userManagement.getMostVisitedPage(req.query.userId, res));
 });
 
-app.put("/user/most-visited", jsonParser, (req, res) => {
+app.post("/user/most-visited", jsonParser, (req, res) => {
   userManagement.visitedPage(req.body, res);
   res.send();
 });
