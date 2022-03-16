@@ -1,5 +1,5 @@
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getFavourites, removeFavourite, setFavourite } from '../../requests/favourites';
 import { useCookies } from 'react-cookie';
@@ -35,17 +35,22 @@ export const FavouriteButton = ({ path, suppressCheck, onRemoveFavourite }) => {
         }
     };
 
-    useEffect(async () => {
+    const loadFavouriteState = useCallback(async () => {
         if (suppressCheck === true) {
             setFavouriteFlag(true);
             return;
         }
 
-        const favourites = await getFavourites(cookies['userId']);
+        if (!cookies['userId']) return;
+
+        const response = await getFavourites(cookies['userId']);
+        const favourites = response.favorites;
 
         const isFavourite = favourites.includes(path);
         setFavouriteFlag(isFavourite);
-    }, []);
+    }, [cookies, path, suppressCheck]);
+
+    useEffect(loadFavouriteState, [loadFavouriteState]);
 
     if (cookies['userId'] === undefined) return null;
 

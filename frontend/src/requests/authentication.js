@@ -22,7 +22,7 @@ export const register = async (username, password) => {
 
     const response = await fetch(registrationEndpoint, request);
 
-    return response.text();
+    return response.json();
 };
 
 export const login = async (username, password) => {
@@ -34,7 +34,7 @@ export const login = async (username, password) => {
 
     if (response.status === 406) return createNullPromise();
 
-    return response.text();
+    return response.json();
 };
 
 export const logout = async (userId) => {
@@ -44,5 +44,5 @@ export const logout = async (userId) => {
 
     await fetch(logoutEndpoint, request);
 
-    return createNullPromise()
+    return createNullPromise();
 }

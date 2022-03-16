@@ -1,5 +1,6 @@
 import { WideParagraph } from '../article/paragraph';
 import { FavouriteList } from '../favourites/favouriteList';
+import { MostVisitedDisplay } from '../favourites/mostVisited';
 
 export const IndexPage = () => (
     <>
@@ -15,6 +16,7 @@ export const IndexPage = () => (
         </WideParagraph>
         <WideParagraph>
             <FavouriteList />
+            <MostVisitedDisplay />
         </WideParagraph>
     </>
 );

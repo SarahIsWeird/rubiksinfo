@@ -68,12 +68,14 @@ export const LoginPage = () => {
 
         if (!allFieldsValid) return;
 
-        const userId = await login(username, password);
+        const response = await login(username, password);
 
-        if (userId === null) {
+        if (response === null) {
             setUsernameKnown(false);
             return;
         }
+
+        const userId = response.userId;
 
         setCookie('userId', userId);
         setCookie('username', username);
