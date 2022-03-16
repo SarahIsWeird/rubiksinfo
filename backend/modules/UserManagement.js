@@ -5,9 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cookieParser());
 
-const notFoundStatusCode = require("../config.json").statusCodes.notFoundCode;
-
-var userList = [];
+const userList = [];
 const sessions = [];
 
 function register(req) {
