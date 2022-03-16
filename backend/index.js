@@ -15,6 +15,8 @@ const notAuthorized = 401;
 
 function isAuthenticated(req, res, next) {
   if (sessionManagement.getUserIdBySessionId(req.body.sessionId)) { // mit Cookie statt body?
+    let session = sessionManagement.getUserIdBySessionId(req.body.sessionId)
+    req.body.userId = session.userId;
     next();
   } else {
     res.status(notAuthorized);
@@ -59,7 +61,7 @@ app.delete("/auth/logout", (req, res) => {
   res.send();
 });
 
-app.put("/user/favorite", (req, res) => {
+app.put("/user/favorite",  (req, res) => {
   userManagement.addFavorite(req.body, res);
   res.send();
 });
