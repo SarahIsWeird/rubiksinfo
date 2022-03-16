@@ -1,6 +1,7 @@
 import {WideParagraph} from '../article/paragraph';
 import {Table, TableBody, TableHead} from '../article/table';
 import styled from 'styled-components';
+import { FavouriteButton } from '../favourites/articleFavourites';
 
 const LeftAlignedCell = styled.td`
     margin-left: 0.25em;
@@ -16,7 +17,7 @@ const Image = styled.img`
 export const TypesPage = () => (
     <>
         <WideParagraph>
-            <h2>Arten von Zauberwürfeln</h2>
+            <h2>Arten von Zauberwürfeln <FavouriteButton /></h2>
             <p>
                 Viele kennen den standardmäßigen 3x3x3 Würfel. Neben dieser recht
                 einfachen Form gibt es noch einige weitere, die sich grob in die
