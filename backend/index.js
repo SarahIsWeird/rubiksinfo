@@ -15,7 +15,11 @@ app.listen(port, () => {
 app.post("/user/register", jsonParser, (req, res) => {
   let userId = userManagement.register(req.body);
   userManagement.setCookie(res);
-  res.send(userId);
+  if (userId) {
+    res.send(userId);
+  } else {
+    res.send(409);
+  }
 });
 
 app.put("/user/favorite", jsonParser, (req, res) => {

@@ -9,6 +9,11 @@ var userList = [];
 const sessions = [];
 
 function register(req) {
+  const userExists = userList.find(user => user.name === req.name);
+  if (userExists) {
+    return undefined;
+  }
+
   var visits = {
     geschichte: 0,
     arten: 0,
