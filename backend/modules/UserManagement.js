@@ -110,6 +110,11 @@ function visitedPage(req, res) {
   }
 }
 
+function getUsernameByUserId(userId) {
+  const user = userList.find((user) => user.id === userId);
+  return user !== undefined ? user.name : null;
+}
+
 module.exports = {
   register,
   login,
@@ -119,4 +124,5 @@ module.exports = {
   deleteFavorite,
   getMostVisitedPage,
   visitedPage,
+  getUsernameByUserId,
 };
