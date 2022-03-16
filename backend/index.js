@@ -23,31 +23,51 @@ app.post("/user/register", jsonParser, (req, res) => {
 });
 
 app.put("/user/favorite", jsonParser, (req, res) => {
-  userManagement.addFavorite(req.body, res);
-  res.send();
+  let success = userManagement.addFavorite(req.body);
+  if(success) {
+    res.send();
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
-app.get("/user/most-visited", (req, res) => {
-  res.send({
-    content: userManagement.getMostVisitedPage(req.query.userId, res),
-  });
+app.get("/user/most-visited", (req) => {
+  let maxKey = userManagement.getMostVisitedPage(req.query.userId, res);
+  if(maxKey) {
+    res.send({
+      content: maxKey,
+    });
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.post("/user/most-visited", jsonParser, (req, res) => {
-  userManagement.visitedPage(req.body, res);
-  res.send();
+  let success = userManagement.visitedPage(req.body, res);
+  if(success) {
+    res.send();
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.get("/user/favorite", (req, res) => {
   let favorites = userManagement.getFavorites(req.query.userId, res);
-  res.send({
+  if(favorites){
+    res.send({
       favorites: favorites,
     });
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.delete("/user/favorite", jsonParser, (req, res) => {
-  userManagement.deleteFavorite(req.body, res);
-  res.send();
+  let success = userManagement.deleteFavorite(req.body, res);
+  if(success) {
+    res.send();
+  } else 
+  res.send(notFoundStatusCode);
 });
 
 app.delete("/user/logout", (req, res) => {
@@ -58,8 +78,7 @@ app.delete("/user/logout", (req, res) => {
 app.post("/user/login", jsonParser, (req, res) => {
   let user = userManagement.login(req.body);
   if (!user) {
-    res.status(notFoundStatusCode);
-    res.send();
+    res.send(notFoundStatusCode);
   } else {
     userManagement.setCookie(res);
     res.send({
