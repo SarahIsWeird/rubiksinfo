@@ -1,4 +1,4 @@
-import {createNullPromise} from './common';
+import { createNullPromise } from './common';
 
 export const getComments = async (origin) => {
     const response = await fetch('/api/comment?origin=' + origin);

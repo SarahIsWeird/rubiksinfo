@@ -1,34 +1,39 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useCallback , useEffect , useState } from 'react'
 import styled from 'styled-components';
-import {getComments, newComment} from "../requests/comments"
-import {useCookies} from 'react-cookie';
-import {ErrorParagraph, FormButton, FormField} from './form/form';
-import {Input} from './form/input'
-import {useLocation} from 'react-router'
-
+import { getComments , newComment } from "../requests/comments"
+import { useCookies } from 'react-cookie';
+import { ErrorParagraph , FormButton , FormField } from './form/form';
+import { Input } from './form/input'
+import { useLocation } from 'react-router'
 
 const TimeStamp = styled.h6`
     margin-top: 0;
-`
+`;
+
 const Username = styled.h4`
     margin-bottom: 0; 
-`
+`;
+
 const CommentText = styled.p`
     margin: 0;
     word-break: break-word;
     width: 50vw;
-`
+`;
+
 const Comment = styled.div`
     padding: 1em;
     margin-bottom: 1em;
-`
+`;
+
 const NewCommentForm = styled.form`
     margin-bottom: 1em;
-`
+`;
+
 const CommentSection = styled.div`
     overflow: auto;
     max-height: 40vh;
-`
+`;
+
 const NewCommentBox = ({value, setValue, onSubmit}) => (
     <NewCommentForm onSubmit={onSubmit}>
         <FormField>
@@ -42,7 +47,7 @@ const NewCommentBox = ({value, setValue, onSubmit}) => (
             Kommentar erstellen
         </FormButton>
     </NewCommentForm>
-)
+);
 
 const NotLoggedInMessage = () => (
     <form>
@@ -50,10 +55,9 @@ const NotLoggedInMessage = () => (
             <ErrorParagraph>Um Kommentare schreiben zu k&ouml;nnen, musst du dich einloggen.</ErrorParagraph>
         </FormField>
     </form>
-)
+);
 
-const canRenderComments = (currentLocation) => ['/geschichte', '/arten', '/loesen'].includes(currentLocation.pathname)
-
+const canRenderComments = (currentLocation) => ['/geschichte', '/arten', '/loesen'].includes(currentLocation.pathname);
 
 const getTimeDifference = (commentTime) => {
     let currentTime = new Date();
@@ -76,7 +80,7 @@ const getTimeDifference = (commentTime) => {
         }
     }
     return result;
-}
+};
 
 export const Comments = () => {
     const [commentList, setCommentList] = useState(null);
@@ -85,56 +89,56 @@ export const Comments = () => {
     const currentLocation = useLocation();
 
     const loadComments = useCallback(async () => {
-            const response = await getComments(currentLocation.pathname);
+        const response = await getComments(currentLocation.pathname);
 
-            if (!response) {
-                setCommentList(<></>)
-                return
-            }
-
-            const comments = response.comments;
-            let commentComponents;
-            comments && (commentComponents = comments.map(comment => {
-                        let style = {};
-                        if (cookies['username'] === comment.username) {
-                            style = {
-                                backgroundColor: "#f1f7cb"
-                            };
-                        }
-
-                        let result = getTimeDifference(new Date(comment.creationDate));
-
-                        return (
-                            <Comment style={style} key={comment.commentId}>
-                                <div>
-                                    <Username>{comment.username}</Username>
-                                    <TimeStamp>Vor {result}</TimeStamp>
-                                </div>
-                                <div id="commentBody">
-                                    <CommentText>
-                                        {comment.text}
-                                    </CommentText>
-                                </div>
-                            </Comment>
-                        );
-                    }
-                )
-            )
-            setCommentList(commentComponents);
+        if (!response) {
+            setCommentList(null)
+            return
         }
-        , [currentLocation, cookies])
+
+        const comments = response.comments;
+        let commentComponents;
+
+        if(comments) {
+            commentComponents = comments.map(comment => {
+                    let style = {};
+                    if (cookies['username'] === comment.username) {
+                        style = {
+                            backgroundColor: "#f1f7cb"
+                        };
+                    }
+
+                    let result = getTimeDifference(new Date(comment.creationDate));
+
+                    return (
+                        <Comment style={style} key={comment.commentId}>
+                            <div>
+                                <Username>{comment.username}</Username>
+                                <TimeStamp>Vor {result}</TimeStamp>
+                            </div>
+                            <div id="commentBody">
+                                <CommentText>
+                                    {comment.text}
+                                </CommentText>
+                            </div>
+                        </Comment>
+                    );
+                }
+            )
+        }
+        setCommentList(commentComponents);
+    }, [currentLocation, cookies]);
 
     const createNewComment = async (event) => {
         event.preventDefault();
         setNewCommentText('');
         await newComment(newCommentText, currentLocation.pathname, cookies['userId'], cookies['username']);
         loadComments();
-    }
+    };
 
-    useEffect(loadComments, [loadComments, currentLocation])
+    useEffect(loadComments, [loadComments, currentLocation]);
 
     if (!canRenderComments(currentLocation)) {
-        console.log("cant render")
         return null;
     }
 
@@ -150,5 +154,5 @@ export const Comments = () => {
                 {commentList}
             </CommentSection>
         </div>
-    )
-}
+    );
+};
