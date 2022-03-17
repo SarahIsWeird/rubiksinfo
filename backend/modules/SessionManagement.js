@@ -18,7 +18,7 @@ function addSession(res, userId) {
 }
 
 function removeSession(sessionId, res) {
-  let sessionIndex = sessions.findIndex(
+  const sessionIndex = sessions.findIndex(
     (session) => session.sessionId === sessionId
   );
   sessions.splice(sessionIndex, 1);
