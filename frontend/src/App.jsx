@@ -13,6 +13,11 @@ import {Comments } from './components/comments'
 import './App.css';
 import {LoginPage} from './components/routes/loginPage';
 import {RegistrationPage} from './components/routes/registrationPage';
+import { LoginPage } from './components/routes/loginPage';
+import { RegistrationPage } from './components/routes/registrationPage';
+import { VisitUpdater } from './components/favourites/mostVisited';
+
+import './App.css';
 
 const GlobalStyle = createGlobalStyle`
     html, body {
@@ -65,6 +70,7 @@ const App = () => (
                 <Route path="/registrierung" element={<RegistrationPage />} />
             </Routes>
         <Comments />
+            <VisitUpdater />
         </Main>
         <Footer />
     </div>

@@ -1,6 +1,7 @@
 {
     "statusCodes": {
         "notFoundCode": 404,
-        "conflictCode": 409
+        "conflictCode": 409,
+        "notAuthorized" : 401
     }
 }

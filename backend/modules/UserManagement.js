@@ -5,15 +5,21 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cookieParser());
 
-const userList = [];
-const sessions = [];
+var userList = [];
 
-function register(req) {
-  var visits = {
-    geschichte: 0,
-    arten: 0,
-    loesen: 0,
-  };
+function getUserById(userId) {
+  return userList.find((user) => user.userId === userId);
+}
+
+function getUserByName(username) {
+  return userList.find((user) => user.name === username);
+}
+
+function addUser(req) {
+  const userExists = userList.find((user) => user.name === req.name);
+  if (userExists) {
+    return undefined;
+  }
 
   var userId = uuidv4();
 
@@ -21,7 +27,7 @@ function register(req) {
     userId: userId,
     name: req.name,
     passwordHash: req.passwordHash,
-    visits: visits,
+    visits: {},
     favorites: [],
   };
 
@@ -29,22 +35,7 @@ function register(req) {
   return userId;
 }
 
-function login(req) {
-  return userList.find(
-    (user) => user.name === req.name && user.passwordHash === req.passwordHash
-  );
-}
-
-function setCookie(res) {
-  const sessionId = uuidv4();
-  sessions.push(sessionId);
-  const cookieParameters = {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  };
-  res.cookie("session", sessionId, cookieParameters);
-}
-
-function addFavorite(req) {
+function addFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     return false;
@@ -63,7 +54,7 @@ function getFavorites(userId, res) {
   }
 }
 
-function deleteFavorite(req, res) {
+function removeFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     return false;
@@ -83,50 +74,39 @@ function getMostVisitedPage(userId) {
   let user = userList.find((user) => user.userId === userId);
   if (!user) {
     return false;
-  } else {
-    let maxKey;
-    let maxValue = -1;
-    for ([key, value] of Object.entries(user.visits)) {
-      if (value > maxValue) {
-        maxValue = value;
-        maxKey = key;
-      }
-    }
-    if(maxKey) {
-      return maxKey;
-    } else {
-      return false;
-    }
   }
+
+  const mostVisited = Object.entries(user.visits).reduce(
+      (prev, curr) => curr[1] > prev[1] ? curr : prev, [null, -1]
+  )[0];
+
+  return mostVisited ? mostVisited : false;
 }
 
 function visitedPage(req) {
   let user = userList.find((user) => user.userId === req.userId);
+
   if (!user) {
     return false;
-  } else {
-    for (key of Object.keys(user.visits)) {
-      if (key === req.content) {
-        user.visits[key] += 1;
-      }
-    }
-    return true;
   }
+
+  if (!user.visits[req.content]) {
+    user.visits[req.content] = 0;
+  }
+
+  user.visits[req.content] += 1;
+  return true;
 }
 
-function getUsernameByUserId(userId) {
-  const user = userList.find((user) => user.id === userId);
-  return user !== undefined ? user.name : null;
-}
+
 
 module.exports = {
-  register,
-  login,
-  setCookie,
   getFavorites,
   addFavorite,
-  deleteFavorite,
+  addUser,
+  getUserById,
+  getUserByName,
+  removeFavorite,
   getMostVisitedPage,
   visitedPage,
-  getUsernameByUserId,
 };
