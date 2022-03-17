@@ -27,11 +27,11 @@ export const FavouriteButton = ({ path, suppressCheck, onRemoveFavourite }) => {
         setFavouriteFlag(newIsFavouriteFlag);
 
         if (!isFavouriteFlag) {
-            await setFavourite(cookies['userId'], path);
+            await setFavourite(path);
         } else {
-            await removeFavourite(cookies['userId'], path);
+            await removeFavourite(path);
 
-            onRemoveFavourite();
+            if (onRemoveFavourite) onRemoveFavourite();
         }
     };
 
@@ -41,9 +41,9 @@ export const FavouriteButton = ({ path, suppressCheck, onRemoveFavourite }) => {
             return;
         }
 
-        if (!cookies['userId']) return;
+        if (!cookies['session']) return;
 
-        const { favorites: favourites } = await getFavourites(cookies['userId']);
+        const { favorites: favourites } = await getFavourites();
 
         const isFavourite = favourites.includes(path);
         setFavouriteFlag(isFavourite);
@@ -51,7 +51,7 @@ export const FavouriteButton = ({ path, suppressCheck, onRemoveFavourite }) => {
 
     useEffect(loadFavouriteState, [loadFavouriteState]);
 
-    if (cookies['userId'] === undefined) return null;
+    if (cookies['session'] === undefined) return null;
 
     return (
         <ContainerSpan onClick={ onClick }>

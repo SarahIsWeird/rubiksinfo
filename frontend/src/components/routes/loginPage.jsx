@@ -75,9 +75,6 @@ export const LoginPage = () => {
             return;
         }
 
-        const userId = response.userId;
-
-        setCookie('userId', userId);
         setCookie('username', username);
 
         redirectUser();

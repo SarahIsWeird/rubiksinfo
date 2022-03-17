@@ -72,9 +72,8 @@ export const RegistrationPage = () => {
 
         if (!allFieldsValid) return;
 
-        const { userId } = await register(username, password)
+        await register(username, password)
 
-        setCookie('userId', userId);
         setCookie('username', username);
 
         redirectUser();

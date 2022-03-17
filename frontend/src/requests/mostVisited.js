@@ -1,17 +1,12 @@
-import { buildQueryString, commonGetParameters, createNullPromise, getRequest } from './common';
+import {  commonGetParameters, createNullPromise, getRequest } from './common';
 
-const getRegisterVisitObject = (userId, uriFragment) => ({
-    userId: userId,
+const getRegisterVisitObject = (uriFragment) => ({
     content: uriFragment,
 });
 
-const getGetMostVisitedObject = (userId) => ({
-    userId: userId,
-});
-
-export const registerVisit = async (userId, uriFragment) => {
+export const registerVisit = async (uriFragment) => {
     const registerVisitEndpoint = '/api/user/most-visited';
-    const registerVisitObject = getRegisterVisitObject(userId, uriFragment);
+    const registerVisitObject = getRegisterVisitObject(uriFragment);
     const request = getRequest('POST', registerVisitObject);
 
     await fetch(registerVisitEndpoint, request);
@@ -19,12 +14,10 @@ export const registerVisit = async (userId, uriFragment) => {
     return createNullPromise();
 };
 
-export const getMostVisited = async (userId) => {
+export const getMostVisited = async () => {
     const getMostVisitedEndpoint = '/api/user/most-visited';
-    const getMostVisitedObject = getGetMostVisitedObject(userId);
-    const uriWithQueryString = buildQueryString(getMostVisitedEndpoint, getMostVisitedObject);
 
-    const response = await fetch(uriWithQueryString, commonGetParameters);
+    const response = await fetch(getMostVisitedEndpoint, commonGetParameters);
 
     if (response.status === 404) return createNullPromise();
 
