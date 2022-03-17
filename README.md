@@ -1,5 +1,7 @@
 # Rubik's Info
 
-This is a web page written for the HWR module 4-3131-TIT20A. In it's current iteration, it only uses HTML and CSS with no other external dependencies than Google Fonts. It's intended to inform about the infamous Rubik's Cube, giving readers an overview about the history and different types of the puzzle, in addition to a complete tutorial of how to solve one.
+This is a web application written for the HWR module 4-3131-TIT20A. It's intended to inform about the infamous Rubik's Cube, giving readers an overview about the history and different types of the puzzle, in addition to a complete tutorial of how to solve one. Feel free to check out https://rubiksinfo.de.  
 
-Since it's been written in the span of about a week, this website isn't as fleshed out as other projects might be, so don't expect a very modern website. However, if you still want to take a look at it, feel free to do so at https://rubiksinfo.de.
+## Start Rubik's Info locally
+
+Rubik's Info has docker support. To run it locally, first clone it. Then, open up a terminal in the root directory of the project and run the command  `docker-compose up`. Now, a frontend and backend image should start in a docker container. To visit Rubik's Info, open `localhost: 3000` in your browser. 
