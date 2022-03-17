@@ -15,7 +15,10 @@ export const MostVisitedDisplay = () => {
     const updateMostVisited = useCallback(async () => {
         if (!cookies['userId']) return null;
 
-        const mostVisited = '/' + await getMostVisited(cookies['userId']);
+        const response = await getMostVisited(cookies['userId']);
+        if (response === null) return null;
+
+        const { content: mostVisited } = response;
         console.log('Most visited: ' + mostVisited);
         setMostVisited(mostVisited);
     }, [cookies]);

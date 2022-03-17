@@ -43,8 +43,8 @@ export const FavouriteList = () => {
     const updateFavourites = useCallback(async () => {
         if (!cookies['userId']) return;
 
-        const response = await getFavourites(cookies['userId']);
-        setFavourites(response.favorites);
+        const { favorites: favourites } = await getFavourites(cookies['userId']);
+        setFavourites(favourites);
     }, [cookies]);
 
     useEffect(updateFavourites, [updateFavourites]);

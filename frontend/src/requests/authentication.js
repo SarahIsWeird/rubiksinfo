@@ -30,9 +30,15 @@ export const login = async (username, password) => {
     const loginObject = getLoginRequestObject(username, password);
     const request = getRequest('POST', loginObject);
 
-    const response = await fetch(loginEndpoint, request);
+    let response;
 
-    if (response.status === 406) return createNullPromise();
+    try {
+        response = await fetch(loginEndpoint, request);
+    } catch (e) {
+        console.log('error: ' + e);
+    }
+
+    if (response.status === 404) return createNullPromise();
 
     return response.json();
 };

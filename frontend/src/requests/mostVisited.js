@@ -13,7 +13,7 @@ export const registerVisit = async (userId, uriFragment) => {
     const registerVisitEndpoint = '/api/user/most-visited';
     const registerVisitObject = getRegisterVisitObject(userId, uriFragment);
     console.log(registerVisitObject);
-    const request = getRequest('PUT', registerVisitObject);
+    const request = getRequest('POST', registerVisitObject);
 
     await fetch(registerVisitEndpoint, request);
 
@@ -27,5 +27,7 @@ export const getMostVisited = async (userId) => {
 
     const response = await fetch(uriWithQueryString, commonGetParameters);
 
-    return response.text();
+    if (response.status === 404) return createNullPromise();
+
+    return response.json();
 };

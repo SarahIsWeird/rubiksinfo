@@ -43,8 +43,7 @@ export const FavouriteButton = ({ path, suppressCheck, onRemoveFavourite }) => {
 
         if (!cookies['userId']) return;
 
-        const response = await getFavourites(cookies['userId']);
-        const favourites = response.favorites;
+        const { favorites: favourites } = await getFavourites(cookies['userId']);
 
         const isFavourite = favourites.includes(path);
         setFavouriteFlag(isFavourite);
