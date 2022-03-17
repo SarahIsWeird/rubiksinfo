@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cookieParser());
 
-var userList = [];
+const userList = [];
 
 function getUserById(userId) {
   return userList.find((user) => user.userId === userId);
@@ -21,9 +21,9 @@ function addUser(req) {
     return undefined;
   }
 
-  var userId = uuidv4();
+  const userId = uuidv4();
 
-  var user = {
+  const user = {
     userId: userId,
     name: req.name,
     passwordHash: req.passwordHash,
@@ -36,7 +36,7 @@ function addUser(req) {
 }
 
 function addFavorite(req) {
-  let user = userList.find((user) => user.userId === req.userId);
+  const user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     return false;
   } else {
@@ -46,7 +46,7 @@ function addFavorite(req) {
 }
 
 function getFavorites(userId) {
-  let user = userList.find((user) => user.userId === userId);
+  const user = userList.find((user) => user.userId === userId);
   if (!user) {
     return undefined;
   } else {
@@ -55,11 +55,11 @@ function getFavorites(userId) {
 }
 
 function removeFavorite(req) {
-  let user = userList.find((user) => user.userId === req.userId);
+  const user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     return false;
   } else {
-    let favorite = user.favorites.find((fav) => fav === req.content);
+    const favorite = user.favorites.find((fav) => fav === req.content);
     if (favorite) {
       favIndex = user.favorites.indexOf(favorite);
       user.favorites.splice(favIndex, 1);
@@ -71,7 +71,7 @@ function removeFavorite(req) {
 }
 
 function getMostVisitedPage(userId) {
-  let user = userList.find((user) => user.userId === userId);
+  const user = userList.find((user) => user.userId === userId);
   if (!user) {
     return false;
   }
@@ -85,7 +85,7 @@ function getMostVisitedPage(userId) {
 }
 
 function visitedPage(req) {
-  let user = userList.find((user) => user.userId === req.userId);
+  const user = userList.find((user) => user.userId === req.userId);
 
   if (!user) {
     return false;

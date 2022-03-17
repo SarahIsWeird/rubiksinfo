@@ -1,7 +1,7 @@
 const express = require("express");
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-var jsonParser = bodyParser.json();
+const jsonParser = bodyParser.json();
 
 const userManagement = require("./modules/UserManagement");
 const commentManagement = require("./modules/CommentManagement");
@@ -17,7 +17,7 @@ const conflictCode = require("./config.json").statusCodes.conflictCode;
 const notAuthorizedCode = require("./config.json").statusCodes.notAuthorized;
 
 function isAuthenticated(req, res, next) {
-  let userId = sessionManagement.getUserId(req.cookies.session);
+  const userId = sessionManagement.getUserId(req.cookies.session);
   if (userId) {
     req.body.sessionId = req.cookies.session;
     req.body.userId = userId;
@@ -38,9 +38,9 @@ app.listen(port, () => {
 });
 
 app.post("/auth/register", (req, res) => {
-  let userId = userManagement.addUser(req.body);
+  const userId = userManagement.addUser(req.body);
   if (userId) {
-    let sessionId = sessionManagement.addSession(res, userId);
+    const sessionId = sessionManagement.addSession(res, userId);
     res.send({ sessionId: sessionId });
   } else {
     res.status(conflictCode);
@@ -49,7 +49,7 @@ app.post("/auth/register", (req, res) => {
 });
 
 app.post("/auth/login", (req, res) => {
-  let user = userManagement.getUserByName(req.body.name);
+  const user = userManagement.getUserByName(req.body.name);
   if (user) {
     const sessionId = sessionManagement.addSession(res, user.userId);
     res.send({
@@ -96,7 +96,7 @@ app.post("/user/most-visited", (req, res) => {
 });
 
 app.get("/user/favorite", (req, res) => {
-  let favorites = userManagement.getFavorites(req.body.userId, res);
+  const favorites = userManagement.getFavorites(req.body.userId, res);
   if (favorites) {
     res.send({
       favorites: favorites,
@@ -116,7 +116,7 @@ app.delete("/user/favorite", (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-  let user = userManagement.getUserById(req.body.userId);
+  const user = userManagement.getUserById(req.body.userId);
   commentManagement.addComment(req.body, user.name);
   res.send();
 });
