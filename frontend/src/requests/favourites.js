@@ -1,32 +1,24 @@
-import { buildQueryString, commonGetParameters, createNullPromise, getRequest } from './common';
+import { commonGetParameters, createNullPromise, getRequest } from './common';
 
-const getGetFavouritesObject = (userId) => ({
-    userId: userId,
-});
-
-const getSetFavouriteObject = (userId, uriFragment) => ({
-    userId: userId,
+const getSetFavouriteObject = (uriFragment) => ({
     content: uriFragment,
 });
 
-const getRemoveFavouriteObject = (userId, uriFragment) => ({
-    userId: userId,
+const getRemoveFavouriteObject = (uriFragment) => ({
     content: uriFragment,
 });
 
-export const getFavourites = async (userId) => {
+export const getFavourites = async () => {
     const getFavouritesEndpoint = '/api/user/favorite';
-    const getFavouritesObject = getGetFavouritesObject(userId);
-    const uriWithQueryString = buildQueryString(getFavouritesEndpoint, getFavouritesObject);
 
-    const response = await fetch(uriWithQueryString, commonGetParameters);
+    const response = await fetch(getFavouritesEndpoint, commonGetParameters);
 
     return response.json();
 };
 
-export const setFavourite = async (userId, uriFragment) => {
+export const setFavourite = async (uriFragment) => {
     const setFavouriteEndpoint = '/api/user/favorite';
-    const setFavouriteObject = getSetFavouriteObject(userId, uriFragment);
+    const setFavouriteObject = getSetFavouriteObject(uriFragment);
     const request = getRequest('PUT', setFavouriteObject);
 
     await fetch(setFavouriteEndpoint, request);
@@ -34,9 +26,9 @@ export const setFavourite = async (userId, uriFragment) => {
     return createNullPromise();
 };
 
-export const removeFavourite = async (userId, uriFragment) => {
+export const removeFavourite = async (uriFragment) => {
     const removeFavouriteEndpoint = '/api/user/favorite';
-    const removeFavouriteObject = getRemoveFavouriteObject(userId, uriFragment);
+    const removeFavouriteObject = getRemoveFavouriteObject(uriFragment);
     const request = getRequest('DELETE', removeFavouriteObject);
 
     await fetch(removeFavouriteEndpoint, request);

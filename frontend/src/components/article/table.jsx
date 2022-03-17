@@ -7,6 +7,7 @@ export const Table = styled.table`
     margin-left: auto;
     margin-right: auto;
 `;
+
 const StyledTableHead = styled.thead`
     border: thin solid grey;
     
@@ -20,6 +21,7 @@ const StyledTableHead = styled.thead`
         }
     }
 `;
+
 export const TableHead = ({children}) => (
     <StyledTableHead>
         <tr>
@@ -27,6 +29,7 @@ export const TableHead = ({children}) => (
         </tr>
     </StyledTableHead>
 );
+
 export const StyledTableBody = styled.tbody`
     border: thin solid grey;
   
@@ -40,6 +43,7 @@ export const StyledTableBody = styled.tbody`
         }
     }
 `;
+
 export const TableBody = ({children}) => (
     <StyledTableBody>
         {children}

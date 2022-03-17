@@ -14,7 +14,7 @@ const FooterLink = styled.a`
     padding: 10px 15px;
 
     :link, :visited {
-        color: blue;
+        color: ${props => props.theme.linkColor};
         text-decoration: none;
     }
 `;

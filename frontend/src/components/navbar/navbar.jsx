@@ -6,6 +6,7 @@ import { useCookies } from 'react-cookie';
 import styled from 'styled-components';
 import { FormButton } from '../form/form';
 import { logout } from '../../requests/authentication';
+import { ThemeSwitcher } from './themeSwitcher';
 
 const buildLoginPath = (currentUrl) =>
     buildConditionalReferrerPath("/login", currentUrl);
@@ -14,6 +15,7 @@ const UsernameDiv = styled.div`
     display: flex;
     align-items: center;
     width: 25vw !important;
+    margin-left: 1em;
     
     justify-content: flex-end;
   
@@ -24,14 +26,19 @@ const RightMarginSpan = styled.span`
     margin-right: 1em;
 `;
 
-export const Navbar = () => {
+const RightAlignedSpan = styled.span`
+    justify-self: flex-end;
+    margin-top: auto;
+    margin-bottom: auto;
+`;
+
+export const Navbar = ({ isDarkMode, setDarkMode }) => {
     const [cookies, , removeCookie] = useCookies(['username']);
     const currentLocation = useLocation().pathname;
 
     const onLogout = async () => {
-        await logout(cookies['userId']);
+        await logout();
 
-        removeCookie('userId');
         removeCookie('username');
     };
 
@@ -45,6 +52,7 @@ export const Navbar = () => {
             </FormButton>
         </UsernameDiv>
     );
+
     const loginComponent = (
         <NavBtn>
             <NavBtnLink to={ buildLoginPath(currentLocation) }>
@@ -71,6 +79,11 @@ export const Navbar = () => {
                 </NavLink>
             </NavMenu>
             { cookies['username'] !== undefined ? usernameComponent : loginComponent }
+            <RightAlignedSpan>
+                <ThemeSwitcher
+                    isDarkMode={ isDarkMode }
+                    setDarkMode={ setDarkMode } />
+            </RightAlignedSpan>
         </Nav>
     )
 };

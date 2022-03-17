@@ -17,6 +17,7 @@ export const LeftImage = styled.div`
         text-align: center;
     }
 `;
+
 export const RightImage = styled.div`
     grid-column: 3 / span 1;
     display: flex;
@@ -35,6 +36,7 @@ export const RightImage = styled.div`
         text-align: center;
     }
 `;
+
 export const InlineImage = styled.img`
     align-self: revert;
     width: 300px;

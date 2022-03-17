@@ -4,7 +4,7 @@ import { useQueryParameters } from '../referrals/hooks/useQueryParameters';
 import { buildRedirectComponentFromQueryParameters } from '../referrals/referralProcessing';
 import { PasswordInput, UsernameInput } from '../form/input';
 import { validateLoginPassword, validateUsername } from '../form/validations';
-import { login } from '../../requests/authentication';
+import { authCookieParameters, login } from '../../requests/authentication';
 import { useCookies } from 'react-cookie';
 
 const usernameErrorMessage = (
@@ -75,10 +75,7 @@ export const LoginPage = () => {
             return;
         }
 
-        const userId = response.userId;
-
-        setCookie('userId', userId);
-        setCookie('username', username);
+        setCookie('username', username, authCookieParameters);
 
         redirectUser();
     };

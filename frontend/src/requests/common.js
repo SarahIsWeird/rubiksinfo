@@ -10,9 +10,6 @@ export const commonGetParameters = {
     method: 'GET',
 };
 
-export const buildQueryString = (uriFragment, queryParameters) =>
-    uriFragment + '?' + new URLSearchParams(queryParameters);
-
 export const getRequest = (method, requestObject) => ({
     ...commonParameters,
     method: method,

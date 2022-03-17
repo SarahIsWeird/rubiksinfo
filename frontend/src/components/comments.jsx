@@ -1,5 +1,5 @@
 import React, { useCallback , useEffect , useState } from 'react'
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { getComments , newComment } from "../requests/comments"
 import { useCookies } from 'react-cookie';
 import { ErrorParagraph , FormButton , FormField } from './form/form';
@@ -34,14 +34,16 @@ const CommentSection = styled.div`
     max-height: 40vh;
 `;
 
-const NewCommentBox = ({value, setValue, onSubmit}) => (
+const NewCommentBox = ({ value, setValue, onSubmit, isValid }) => (
     <NewCommentForm onSubmit={onSubmit}>
         <FormField>
             <span>Nachricht</span><br/>
             <Input
-                value={value}
-                setValue={setValue}
+                value={ value }
+                setValue={ setValue }
+                isValid={ isValid }
             />
+            { !isValid && <EmptyCommentError /> }
         </FormField>
         <FormButton type="submit">
             Kommentar erstellen
@@ -55,6 +57,12 @@ const NotLoggedInMessage = () => (
             <ErrorParagraph>Um Kommentare schreiben zu k&ouml;nnen, musst du dich einloggen.</ErrorParagraph>
         </FormField>
     </form>
+);
+
+const EmptyCommentError = () => (
+    <ErrorParagraph>
+        Der Kommentar darf nicht leer sein.
+    </ErrorParagraph>
 );
 
 const canRenderComments = (currentLocation) => ['/geschichte', '/arten', '/loesen'].includes(currentLocation.pathname);
@@ -84,11 +92,17 @@ const getTimeDifference = (commentTime) => {
 
 export const Comments = () => {
     const [commentList, setCommentList] = useState(null);
+    const [isNewCommentInvalid, setNewCommentInvalid] = useState(false);
     const [cookies, ,] = useCookies(['username']);
     const [newCommentText, setNewCommentText] = useState('');
     const currentLocation = useLocation();
+    const currentTheme = useTheme();
 
     const loadComments = useCallback(async () => {
+        if (!canRenderComments(currentLocation)) {
+            return null;
+        }
+
         const response = await getComments(currentLocation.pathname);
 
         if (!response) {
@@ -104,7 +118,7 @@ export const Comments = () => {
                     let style = {};
                     if (cookies['username'] === comment.username) {
                         style = {
-                            backgroundColor: "#f1f7cb"
+                            backgroundColor: currentTheme.ownCommentBackgroundColor
                         };
                     }
 
@@ -127,13 +141,21 @@ export const Comments = () => {
             )
         }
         setCommentList(commentComponents);
-    }, [currentLocation, cookies]);
+    }, [currentLocation, cookies, currentTheme]);
 
     const createNewComment = async (event) => {
         event.preventDefault();
+        const isCommentValid = newCommentText !== '';
+        setNewCommentInvalid(!isCommentValid)
+
+        if (!isCommentValid) {
+            return;
+        }
+
         setNewCommentText('');
-        await newComment(newCommentText, currentLocation.pathname, cookies['userId'], cookies['username']);
-        loadComments();
+        await newComment(newCommentText, currentLocation.pathname, cookies['username']);
+
+        await loadComments();
     };
 
     useEffect(loadComments, [loadComments, currentLocation]);
@@ -142,13 +164,21 @@ export const Comments = () => {
         return null;
     }
 
+    const commentBox = (
+        <>
+            <NewCommentBox
+                value={ newCommentText }
+                setValue={ setNewCommentText }
+                isValid={ !isNewCommentInvalid }
+                onSubmit={ createNewComment } />
+        </>
+    );
+
     return (
         <div>
             <h2>Kommentare</h2>
             <div>
-                {cookies['userId'] ?
-                    <NewCommentBox value={newCommentText} setValue={setNewCommentText} onSubmit={createNewComment}/> :
-                    <NotLoggedInMessage/>}
+                { cookies['session'] ? commentBox : <NotLoggedInMessage/> }
             </div>
             <CommentSection>
                 {commentList}

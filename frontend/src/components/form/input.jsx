@@ -6,11 +6,16 @@ const StyledInput = styled.input`
 
     border-width: 1px;
     border-radius: 4px;
-    border-color: black;
+    border-color: ${props => props.theme.fontColor};
     border-style: solid;
+  
+    color: ${props => props.theme.fontColor};
+    caret-color: ${props => props.theme.fontColor};
+  
+    background-color: ${props => props.theme.backgroundColor};
     
     &.error {
-        border-color: red;
+        border-color: ${props => props.theme.errorColor};
     }
 `;
 

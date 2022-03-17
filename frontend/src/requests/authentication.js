@@ -11,10 +11,6 @@ const getLoginRequestObject = (username, password) => ({
     passwordHash: hashPassword(password),
 });
 
-const getLogoutRequestObject = (userId) => ({
-    userId: userId,
-});
-
 export const register = async (username, password) => {
     const registrationEndpoint = '/api/auth/register';
     const registrationObject = getRegistrationRequestObject(username, password);
@@ -37,12 +33,16 @@ export const login = async (username, password) => {
     return response.json();
 };
 
-export const logout = async (userId) => {
+export const logout = async () => {
     const logoutEndpoint = '/api/auth/logout';
-    const logoutObject = getLogoutRequestObject(userId);
-    const request = getRequest('DELETE', logoutObject);
+    const request = getRequest('DELETE');
 
     await fetch(logoutEndpoint, request);
 
     return createNullPromise();
-}
+};
+
+export const authCookieParameters = {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    sameSite: 'strict',
+};
