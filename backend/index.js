@@ -67,31 +67,52 @@ app.delete("/auth/logout", (req, res) => {
 });
 
 app.post("/user/favorite", (req, res) => {
-  userManagement.addFavorite(req.body, res);
-  res.send();
+  const success = userManagement.addFavorite(req.body);
+  if (success) {
+    res.send();
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.get("/user/most-visited", (req, res) => {
-  res.send({
-    "most-visited": userManagement.getMostVisitedPage(req.body.userId, res),
-  });
+  const mostVisited = userManagement.getMostVisitedPage(req.body.userId);
+  if (mostVisited) {
+    res.send({
+      "most-visited": mostVisited,
+    });
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.post("/user/most-visited", (req, res) => {
-  userManagement.visitedPage(req.body, res);
-  res.send();
+  const success = userManagement.visitedPage(req.body);
+  if (success) {
+    res.send();
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.get("/user/favorite", (req, res) => {
   let favorites = userManagement.getFavorites(req.body.userId, res);
-  res.send({
-    favorites: favorites,
-  });
+  if (favorites) {
+    res.send({
+      favorites: favorites,
+    });
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.delete("/user/favorite", (req, res) => {
-  userManagement.removeFavorite(req.body, res);
-  res.send();
+  const success = userManagement.removeFavorite(req.body);
+  if (success) {
+    res.send();
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
 
 app.post("/comment", (req, res) => {
@@ -101,7 +122,12 @@ app.post("/comment", (req, res) => {
 });
 
 app.get("/comment", (req, res) => {
-  res.send({
-    comments: commentManagement.getComments(req.query.origin),
-  });
+  const comments = commentManagement.getComments(req.query.origin);
+  if (comments) {
+    res.send({
+      comments: comments,
+    });
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });

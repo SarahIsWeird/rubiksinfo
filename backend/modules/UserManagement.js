@@ -35,7 +35,7 @@ function addUser(req) {
   return userId;
 }
 
-function addFavorite(req, res) {
+function addFavorite(req) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     return false;
@@ -45,7 +45,7 @@ function addFavorite(req, res) {
   }
 }
 
-function getFavorites(userId, res) {
+function getFavorites(userId) {
   let user = userList.find((user) => user.userId === userId);
   if (!user) {
     return undefined;
@@ -54,16 +54,16 @@ function getFavorites(userId, res) {
   }
 }
 
-function removeFavorite(req, res) {
+function removeFavorite(req) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
     return false;
   } else {
     let favorite = user.favorites.find((fav) => fav === req.content);
-    if(favorite) {
+    if (favorite) {
       favIndex = user.favorites.indexOf(favorite);
-    user.favorites.splice(favIndex, 1);
-    return true;
+      user.favorites.splice(favIndex, 1);
+      return true;
     } else {
       return false;
     }
@@ -77,7 +77,8 @@ function getMostVisitedPage(userId) {
   }
 
   const mostVisited = Object.entries(user.visits).reduce(
-      (prev, curr) => curr[1] > prev[1] ? curr : prev, [null, -1]
+    (prev, curr) => (curr[1] > prev[1] ? curr : prev),
+    [null, -1]
   )[0];
 
   return mostVisited ? mostVisited : false;
@@ -97,8 +98,6 @@ function visitedPage(req) {
   user.visits[req.content] += 1;
   return true;
 }
-
-
 
 module.exports = {
   getFavorites,
