@@ -5,9 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const app = express();
 app.use(cookieParser());
 
-const userNotFoundStatusCode = require("../index").userNotFoundStatusCode;
-
-var userList = [];
+const userList = [];
 const sessions = [];
 
 function register(req) {
@@ -46,21 +44,20 @@ function setCookie(res) {
   res.cookie("session", sessionId, cookieParameters);
 }
 
-function addFavorite(req, res) {
+function addFavorite(req) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status(userNotFoundStatusCode);
-    res.send();
+    return false;
   } else {
     user.favorites.push(req.content);
+    return true;
   }
 }
 
 function getFavorites(userId, res) {
   let user = userList.find((user) => user.userId === userId);
   if (!user) {
-    res.status(userNotFoundStatusCode);
-    res.send();
+    return undefined;
   } else {
     return user.favorites;
   }
@@ -69,20 +66,23 @@ function getFavorites(userId, res) {
 function deleteFavorite(req, res) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status(userNotFoundStatusCode);
-    res.send();
+    return false;
   } else {
-    let find = user.favorites.find((fav) => fav === req.content);
-    favIndex = user.favorites.indexOf(find);
+    let favorite = user.favorites.find((fav) => fav === req.content);
+    if(favorite) {
+      favIndex = user.favorites.indexOf(favorite);
     user.favorites.splice(favIndex, 1);
+    return true;
+    } else {
+      return false;
+    }
   }
 }
 
-function getMostVisitedPage(userId, res) {
+function getMostVisitedPage(userId) {
   let user = userList.find((user) => user.userId === userId);
   if (!user) {
-    res.status(userNotFoundStatusCode);
-    res.send();
+    return false;
   } else {
     let maxKey;
     let maxValue = -1;
@@ -92,21 +92,25 @@ function getMostVisitedPage(userId, res) {
         maxKey = key;
       }
     }
-    return maxKey;
+    if(maxKey) {
+      return maxKey;
+    } else {
+      return false;
+    }
   }
 }
 
-function visitedPage(req, res) {
+function visitedPage(req) {
   let user = userList.find((user) => user.userId === req.userId);
   if (!user) {
-    res.status(userNotFoundStatusCode);
-    res.send();
+    return false;
   } else {
     for (key of Object.keys(user.visits)) {
       if (key === req.content) {
         user.visits[key] += 1;
       }
     }
+    return true;
   }
 }
 
