@@ -8,6 +8,7 @@ import { ContactPage } from './components/routes/contactPage';
 import { ImprintPage } from './components/routes/imprintPage';
 import { Navbar } from './components/navbar/navbar';
 import styled, { createGlobalStyle } from 'styled-components';
+import {Comments } from './components/comments'
 
 import './App.css';
 import {LoginPage} from './components/routes/loginPage';
@@ -63,6 +64,7 @@ const App = () => (
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/registrierung" element={<RegistrationPage />} />
             </Routes>
+        <Comments />
         </Main>
         <Footer />
     </div>
