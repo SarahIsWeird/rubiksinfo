@@ -66,7 +66,7 @@ app.delete("/auth/logout", (req, res) => {
   res.send();
 });
 
-app.post("/user/favorite", (req, res) => {
+app.put("/user/favorite", (req, res) => {
   const success = userManagement.addFavorite(req.body);
   if (success) {
     res.send();
