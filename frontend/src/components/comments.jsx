@@ -59,16 +59,19 @@ export function Comments({origin}) {
     const currentLocation = useLocation()
 
     const loadComments = async () => {
-        const comments = await getComments(currentLocation.pathname)
+        const response = await getComments(currentLocation.pathname)
+        const comments = response.comments
         const commentComponents = comments.map(comment => {
             let style= {}
-            if(cookies['userId'] === comment.userId) {
+            if(cookies['username'] === comment.username) {
                 style = {
                     backgroundColor: "#f1f7cb"
                 }
             }
-            let creation = Date.parse(comment.creationDate)
-            let timeBetween = Math.floor((Date.parse(new Date()) - creation)/1000/60)
+            let commentTime = new Date(comment.creationDate)
+            let currentTime = new Date()
+            console.log(currentTime-commentTime)
+            let timeBetween = Math.floor((currentTime - commentTime)/1000/60)
             let Result = timeBetween + (timeBetween === 1 ? " Minute" : " Minuten")
             if(timeBetween >= 60){
                 timeBetween = Math.floor(timeBetween/60)
