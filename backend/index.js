@@ -96,7 +96,6 @@ app.delete("/user/favorite", (req, res) => {
 
 app.post("/comment", (req, res) => {
   let user = userManagement.getUserById(req.body.userId);
-  console.log(user)
   commentManagement.addComment(req.body, user.name);
   res.send();
 });

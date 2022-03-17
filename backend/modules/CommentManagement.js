@@ -17,7 +17,6 @@ function addComment(req, username) {
     origin: req.origin,
   };
   comments.push(comment);
-  console.log(comments)
 }
 
 function getComments(origin) {
