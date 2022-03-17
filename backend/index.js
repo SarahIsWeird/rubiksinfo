@@ -31,7 +31,7 @@ app.put("/user/favorite", jsonParser, (req, res) => {
   }
 });
 
-app.get("/user/most-visited", (req) => {
+app.get("/user/most-visited", (req, res) => {
   let maxKey = userManagement.getMostVisitedPage(req.query.userId, res);
   if(maxKey) {
     res.send({
