@@ -8,7 +8,7 @@ import { useLocation } from 'react-router';
 const NotFavouriteHeart = AiOutlineHeart;
 
 const FavouriteHeart = styled(AiFillHeart)`
-    color: #ff3030;
+    color: ${props => props.theme.heartColor};
 `;
 
 const ContainerSpan = styled.span`

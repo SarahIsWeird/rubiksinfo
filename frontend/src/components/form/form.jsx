@@ -45,6 +45,6 @@ export const FormButton = styled.button`
 `;
 
 export const ErrorParagraph = styled.p`
-    color: red;
+    color: ${props => props.theme.errorColor};
     margin-bottom: 0;
 `;

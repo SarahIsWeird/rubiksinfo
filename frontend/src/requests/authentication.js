@@ -40,4 +40,9 @@ export const logout = async () => {
     await fetch(logoutEndpoint, request);
 
     return createNullPromise();
-}
+};
+
+export const authCookieParameters = {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    sameSite: 'strict',
+};
