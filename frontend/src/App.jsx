@@ -1,19 +1,17 @@
-import { Route, Routes } from 'react-router-dom';
-import { IndexPage } from './components/routes/indexPage';
-import { Footer } from './components/footer';
-import { HistoryPage } from './components/routes/history/historyPage';
-import { TypesPage } from './components/routes/typesPage';
-import { SolvePage } from './components/routes/solving/solvePage';
-import { ContactPage } from './components/routes/contactPage';
-import { ImprintPage } from './components/routes/imprintPage';
-import { Navbar } from './components/navbar/navbar';
-import styled, { createGlobalStyle } from 'styled-components';
-import {Comments } from './components/comments'
-
-import './App.css';
+import {Route, Routes} from 'react-router-dom';
+import {IndexPage} from './components/routes/indexPage';
+import {Footer} from './components/footer';
+import {HistoryPage} from './components/routes/history/historyPage';
+import {TypesPage} from './components/routes/typesPage';
+import {SolvePage} from './components/routes/solving/solvePage';
+import {ContactPage} from './components/routes/contactPage';
+import {ImprintPage} from './components/routes/imprintPage';
+import {Navbar} from './components/navbar/navbar';
+import styled, {createGlobalStyle} from 'styled-components';
+import {Comments} from './components/comments'
 import {RegistrationPage} from './components/routes/registrationPage';
-import { LoginPage } from './components/routes/loginPage';
-import { VisitUpdater } from './components/favourites/mostVisited';
+import {LoginPage} from './components/routes/loginPage';
+import {VisitUpdater} from './components/favourites/mostVisited';
 
 import './App.css';
 
@@ -54,23 +52,23 @@ const Main = styled.main`
 
 const App = () => (
     <div className="App">
-        <GlobalStyle />
-        <Navbar />
+        <GlobalStyle/>
+        <Navbar/>
         <Main>
             <Routes>
-                <Route path="/" element={<IndexPage />} />
-                <Route path="/geschichte" element={<HistoryPage />} />
-                <Route path="/arten" element={<TypesPage />} />
-                <Route path="/loesen" element={<SolvePage />} />
-                <Route path="/kontakt" element={<ContactPage />} />
-                <Route path="/impressum" element={<ImprintPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/registrierung" element={<RegistrationPage />} />
+                <Route path="/" element={<IndexPage/>}/>
+                <Route path="/geschichte" element={<HistoryPage/>}/>
+                <Route path="/arten" element={<TypesPage/>}/>
+                <Route path="/loesen" element={<SolvePage/>}/>
+                <Route path="/kontakt" element={<ContactPage/>}/>
+                <Route path="/impressum" element={<ImprintPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/registrierung" element={<RegistrationPage/>}/>
             </Routes>
-            <Comments />
-            <VisitUpdater />
+            <Comments/>
+            <VisitUpdater/>
         </Main>
-        <Footer />
+        <Footer/>
     </div>
 );
 
