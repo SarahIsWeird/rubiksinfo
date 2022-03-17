@@ -16,7 +16,7 @@ const getLogoutRequestObject = (userId) => ({
 });
 
 export const register = async (username, password) => {
-    const registrationEndpoint = '/api/user/register';
+    const registrationEndpoint = '/api/auth/register';
     const registrationObject = getRegistrationRequestObject(username, password);
     const request = getRequest('POST', registrationObject);
 
@@ -26,7 +26,7 @@ export const register = async (username, password) => {
 };
 
 export const login = async (username, password) => {
-    const loginEndpoint = '/api/user/login';
+    const loginEndpoint = '/api/auth/login';
     const loginObject = getLoginRequestObject(username, password);
     const request = getRequest('POST', loginObject);
 
@@ -38,7 +38,7 @@ export const login = async (username, password) => {
 };
 
 export const logout = async (userId) => {
-    const logoutEndpoint = '/api/user/logout';
+    const logoutEndpoint = '/api/auth/logout';
     const logoutObject = getLogoutRequestObject(userId);
     const request = getRequest('DELETE', logoutObject);
 
