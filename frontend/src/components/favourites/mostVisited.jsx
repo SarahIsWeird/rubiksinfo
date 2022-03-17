@@ -19,7 +19,6 @@ export const MostVisitedDisplay = () => {
         if (response === null) return null;
 
         const { content: mostVisited } = response;
-        console.log('Most visited: ' + mostVisited);
         setMostVisited(mostVisited);
     }, [cookies]);
 
@@ -59,7 +58,6 @@ export const VisitUpdater = () => {
     const onLocationChanged = useCallback(async () => {
         if (!cookies['userId']) return;
         if (!articleInfo[location.pathname]) return;
-        console.log(location.pathname);
 
         await registerVisit(cookies['userId'], location.pathname);
     }, [cookies, location]);

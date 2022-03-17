@@ -12,7 +12,6 @@ const getGetMostVisitedObject = (userId) => ({
 export const registerVisit = async (userId, uriFragment) => {
     const registerVisitEndpoint = '/api/user/most-visited';
     const registerVisitObject = getRegisterVisitObject(userId, uriFragment);
-    console.log(registerVisitObject);
     const request = getRequest('POST', registerVisitObject);
 
     await fetch(registerVisitEndpoint, request);
