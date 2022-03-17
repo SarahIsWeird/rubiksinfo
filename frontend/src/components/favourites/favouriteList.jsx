@@ -41,9 +41,9 @@ export const FavouriteList = () => {
     const [cookies] = useCookies();
 
     const updateFavourites = useCallback(async () => {
-        if (!cookies['userId']) return;
+        if (!cookies['session']) return;
 
-        const { favorites: favourites } = await getFavourites(cookies['userId']);
+        const { favorites: favourites } = await getFavourites();
         setFavourites(favourites);
     }, [cookies]);
 
@@ -60,7 +60,7 @@ export const FavouriteList = () => {
             onRemoveFavourite={ updateFavourites } />
     ));
 
-    if (cookies['userId'] === undefined) return null;
+    if (cookies['session'] === undefined) return null;
 
     return (
         <>

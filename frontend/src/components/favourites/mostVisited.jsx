@@ -13,18 +13,18 @@ export const MostVisitedDisplay = () => {
     const location = useLocation();
 
     const updateMostVisited = useCallback(async () => {
-        if (!cookies['userId']) return null;
+        if (!cookies['session']) return null;
 
-        const response = await getMostVisited(cookies['userId']);
+        const response = await getMostVisited();
         if (response === null) return null;
 
-        const { content: mostVisited } = response;
+        const { 'most-visited': mostVisited } = response;
         setMostVisited(mostVisited);
     }, [cookies]);
 
     useEffect(updateMostVisited, [location, updateMostVisited]);
 
-    if (!cookies['userId']) return null;
+    if (!cookies['session']) return null;
     if (!mostVisited) return null;
     if (!articleInfo[mostVisited]) return null;
 
@@ -56,10 +56,10 @@ export const VisitUpdater = () => {
     const location = useLocation();
 
     const onLocationChanged = useCallback(async () => {
-        if (!cookies['userId']) return;
+        if (!cookies['session']) return;
         if (!articleInfo[location.pathname]) return;
 
-        await registerVisit(cookies['userId'], location.pathname);
+        await registerVisit(location.pathname);
     }, [cookies, location]);
 
     useEffect(onLocationChanged, [onLocationChanged]);
