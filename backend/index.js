@@ -12,9 +12,9 @@ const port = process.env.RI_BACKEND_PORT || 8080;
 
 app.use(cookieParser());
 
-const userNotFoundStatusCode = 404;
-const userAlreadyExists = 409;
-const notAuthorized = 401;
+const notFoundStatusCode = require("./config.json").statusCodes.notFoundCode;
+const conflictCode = require("./config.json").statusCodes.conflictCode;
+const notAuthorizedCode = require("./config.json").statusCodes.notAuthorized;
 
 function isAuthenticated(req, res, next) {
   let userId = sessionManagement.getUserId(req.cookies.session);
@@ -23,7 +23,7 @@ function isAuthenticated(req, res, next) {
     req.body.userId = userId;
     next();
   } else {
-    res.status(notAuthorized);
+    res.status(notAuthorizedCode);
     res.send();
   }
 }
@@ -43,7 +43,8 @@ app.post("/auth/register", (req, res) => {
     let sessionId = sessionManagement.addSession(res, userId);
     res.send({ sessionId: sessionId });
   } else {
-    res.send(userAlreadyExists);
+    res.status(conflictCode);
+    res.send();
   }
 });
 
@@ -55,7 +56,7 @@ app.post("/auth/login", (req, res) => {
       sessionId: sessionId,
     });
   } else {
-    res.status(userNotFoundStatusCode);
+    res.status(notFoundStatusCode);
     res.send();
   }
 });
@@ -65,16 +66,18 @@ app.delete("/auth/logout", (req, res) => {
   res.send();
 });
 
-app.put("/user/favorite",  (req, res) => {
+app.post("/user/favorite", (req, res) => {
   userManagement.addFavorite(req.body, res);
   res.send();
 });
 
 app.get("/user/most-visited", (req, res) => {
-  res.send(userManagement.getMostVisitedPage(req.body.userId, res));
+  res.send({
+    "most-visited": userManagement.getMostVisitedPage(req.body.userId, res),
+  });
 });
 
-app.put("/user/most-visited", (req, res) => {
+app.post("/user/most-visited", (req, res) => {
   userManagement.visitedPage(req.body, res);
   res.send();
 });
@@ -92,7 +95,8 @@ app.delete("/user/favorite", (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-  let user = userManagement.getUserById(req.body.userId)
+  let user = userManagement.getUserById(req.body.userId);
+  console.log(user)
   commentManagement.addComment(req.body, user.name);
   res.send();
 });

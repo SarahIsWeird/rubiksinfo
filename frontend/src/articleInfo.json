@@ -1,0 +1,14 @@
+{
+  "/geschichte": {
+    "title": "Geschichte",
+    "summary": "Eine Zusammenfassung der Geschichte des Rubik's Cubes"
+  },
+  "/arten": {
+    "title": "Arten",
+    "summary": "Eine Liste von Variationen des Rubik's Cubes"
+  },
+  "/loesen": {
+    "title": "Lösen",
+    "summary": "Eine Anleitung, wie du deinen Rubik's Cube löst"
+  }
+}

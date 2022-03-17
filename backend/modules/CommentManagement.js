@@ -1,6 +1,8 @@
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 
+//const userManagement = require("./UserManagement");
+
 const app = express();
 
 const comments = [];
@@ -15,16 +17,22 @@ function addComment(req, username) {
     origin: req.origin,
   };
   comments.push(comment);
+  console.log(comments)
 }
 
 function getComments(origin) {
-  let correctPageComments = [];
-  for (comment of comments) {
+  let pageComments = [];
+  for (let comment of comments) {
     if (comment.origin === origin) {
-      correctPageComments.push(comment);
+      pageComments.push({...comment});
     }
   }
-  return correctPageComments;
+  if(pageComments.length > 0) {
+    return pageComments;
+  } else {
+    return undefined;
+  }
+
 }
 
 module.exports = {
