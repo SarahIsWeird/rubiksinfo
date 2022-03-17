@@ -46,7 +46,6 @@ const Slider = styled.span`
     position: absolute;
 
     left: 0.25em;
-    top: 0.175em;
     bottom: 0.25em;
 
     content: "🌞";
