@@ -23,7 +23,12 @@ function getComments(origin) {
       pageComments.push(commentObject);
     }
   }
-  return pageComments;
+  if(pageComments.length > 0) {
+    return pageComments;
+  } else {
+    return undefined;
+  }
+
 }
 
 module.exports = {

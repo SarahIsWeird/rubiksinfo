@@ -93,7 +93,12 @@ app.post("/comment", jsonParser, (req, res) => {
 });
 
 app.get("/comment", (req, res) => {
-  res.send({
-      comments: commentManagement.getComments(req.query.origin)
+  let comments = commentManagement.getComments(req.query.origin);
+  if(comments) {
+    res.send({
+      comments: comments
     });
+  } else {
+    res.send(notFoundStatusCode);
+  }
 });
