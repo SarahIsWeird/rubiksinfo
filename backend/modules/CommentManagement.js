@@ -13,17 +13,22 @@ function addComment(req) {
 }
 
 function getComments(origin) {
-  let correctPageComments = [];
+  let pageComments = [];
   for (comment of comments) {
     if (comment.origin === origin) {
       const commentObject = {
         ...comment,
         username: userManagement.getUsernameByUserId(comment.userId),
       }
-      correctPageComments.push(commentObject);
+      pageComments.push(commentObject);
     }
   }
-  return correctPageComments;
+  if(pageComments.length > 0) {
+    return pageComments;
+  } else {
+    return undefined;
+  }
+
 }
 
 module.exports = {

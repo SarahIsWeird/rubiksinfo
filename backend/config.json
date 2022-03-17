@@ -1,0 +1,6 @@
+{
+    "statusCodes": {
+        "notFoundCode": 404,
+        "conflictCode": 409
+    }
+}
