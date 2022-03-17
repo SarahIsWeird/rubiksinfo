@@ -30,7 +30,8 @@ const Slider = styled.span`
     background-color: #333;
 
     :before {
-      content: "🌚";
+      //noinspection CssUnknownTarget
+      content: url("images/newmoon.png");
 
       //noinspection CssUnknownProperty
       -webkit-transform: translateX(1em);
@@ -48,7 +49,8 @@ const Slider = styled.span`
     left: 0.25em;
     bottom: 0.25em;
 
-    content: "🌞";
+    //noinspection CssUnknownTarget
+    content: url("images/sun.png");
     padding: 0;
 
     -webkit-transition: 0.4s;
