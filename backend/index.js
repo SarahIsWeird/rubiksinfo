@@ -30,8 +30,6 @@ function isAuthenticated(req, res, next) {
 
 app.use(jsonParser);
 app.use("/user/", isAuthenticated);
-app.use("/comment/", isAuthenticated);
-app.use("/auth/logout", isAuthenticated);
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}/`);
@@ -61,7 +59,7 @@ app.post("/auth/login", (req, res) => {
   }
 });
 
-app.delete("/auth/logout", (req, res) => {
+app.delete("/auth/logout",isAuthenticated, (req, res) => {
   sessionManagement.removeSession(req.body.sessionId, res);
   res.send();
 });
@@ -115,7 +113,7 @@ app.delete("/user/favorite", (req, res) => {
   }
 });
 
-app.post("/comment", (req, res) => {
+app.post("/comment", isAuthenticated, (req, res) => {
   const user = userManagement.getUserById(req.body.userId);
   commentManagement.addComment(req.body, user.name);
   res.send();
