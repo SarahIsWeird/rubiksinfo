@@ -7,11 +7,9 @@ app.use(cookieParser());
 
 const sessions = [];
 
-
 function addSession(res, userId) {
   const sessionId = uuidv4();
   sessions.push({ sessionId: sessionId, userId: userId });
-
   const cookieParameters = {
     maxAge: 1000 * 60 * 60 * 24 * 7,
   };
@@ -27,12 +25,13 @@ function removeSession(sessionId, res) {
   res.clearCookie("session");
 }
 
-function getUserIdBySessionId(sessionId) {
-  return sessions.find(session => session.sessionId === sessionId);
+function getUserId(sessionId) {
+  const session = sessions.find((session) => session.sessionId === sessionId);
+  return session ? session.userId : undefined;
 }
 
 module.exports = {
   addSession,
   removeSession,
-  getUserIdBySessionId
+  getUserId,
 };

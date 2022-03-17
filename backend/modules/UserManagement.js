@@ -10,8 +10,12 @@ const userNotFoundStatusCode = 404;
 
 var userList = [];
 
-function getUser(req) {
-  return userList.find((user) => user.name === req.name);
+function getUserById(userId) {
+  return userList.find((user) => user.userId === userId);
+}
+
+function getUserByName(username) {
+  return userList.find((user) => user.name === username);
 }
 
 function addUser(req) {
@@ -108,7 +112,8 @@ module.exports = {
   getFavorites,
   addFavorite,
   addUser,
-  getUser,
+  getUserById,
+  getUserByName,
   deleteFavorite: removeFavorite,
   getMostVisitedPage,
   visitedPage,

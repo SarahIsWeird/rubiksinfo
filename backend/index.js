@@ -1,5 +1,6 @@
 const express = require("express");
 var bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 var jsonParser = bodyParser.json();
 
 const userManagement = require("./modules/UserManagement");
@@ -9,14 +10,17 @@ const sessionManagement = require("./modules/SessionManagement");
 const app = express();
 const port = process.env.RI_BACKEND_PORT || 8080;
 
+app.use(cookieParser());
+
 const userNotFoundStatusCode = 404;
 const userAlreadyExists = 409;
 const notAuthorized = 401;
 
 function isAuthenticated(req, res, next) {
-  if (sessionManagement.getUserIdBySessionId(req.body.sessionId)) { // mit Cookie statt body?
-    let session = sessionManagement.getUserIdBySessionId(req.body.sessionId)
-    req.body.userId = session.userId;
+  let userId = sessionManagement.getUserId(req.cookies.session);
+  if (userId) {
+    req.body.sessionId = req.cookies.session;
+    req.body.userId = userId;
     next();
   } else {
     res.status(notAuthorized);
@@ -44,9 +48,9 @@ app.post("/auth/register", (req, res) => {
 });
 
 app.post("/auth/login", (req, res) => {
-  let userId = userManagement.getUser(req.body);
-  if (userId) {
-    sessionManagement.addSession(res, userId);
+  let user = userManagement.getUserByName(req.body.name);
+  if (user) {
+    const sessionId = sessionManagement.addSession(res, user.userId);
     res.send({
       sessionId: sessionId,
     });
@@ -67,7 +71,7 @@ app.put("/user/favorite",  (req, res) => {
 });
 
 app.get("/user/most-visited", (req, res) => {
-  res.send(userManagement.getMostVisitedPage(req.query.userId, res));
+  res.send(userManagement.getMostVisitedPage(req.body.userId, res));
 });
 
 app.put("/user/most-visited", (req, res) => {
@@ -76,7 +80,7 @@ app.put("/user/most-visited", (req, res) => {
 });
 
 app.get("/user/favorite", (req, res) => {
-  let favorites = userManagement.getFavorites(req.query.userId, res);
+  let favorites = userManagement.getFavorites(req.body.userId, res);
   res.send({
     favorites: favorites,
   });
@@ -88,7 +92,8 @@ app.delete("/user/favorite", (req, res) => {
 });
 
 app.post("/comment", (req, res) => {
-  commentManagement.addComment(req.body);
+  let user = userManagement.getUserById(req.body.userId)
+  commentManagement.addComment(req.body, user.name);
   res.send();
 });
 
