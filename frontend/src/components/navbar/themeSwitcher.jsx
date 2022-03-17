@@ -32,10 +32,12 @@ const Slider = styled.span`
     :before {
       content: "🌚";
 
+      top: 50%;
+
       //noinspection CssUnknownProperty
       -webkit-transform: translateX(1em);
       -ms-transform: translateX(1em);
-      transform: translateX(1em);
+      transform: translate(1em, -0.5em);
     }
   }
 
@@ -46,12 +48,15 @@ const Slider = styled.span`
     position: absolute;
 
     left: 0.25em;
-    bottom: 0.25em;
+    
+    top: 50%;
+    transform: translateY(-0.5em);
 
     content: "🌞";
     padding: 0;
 
     -webkit-transition: 0.4s;
+    //top: 0.25em;
     transition: 0.4s;
 
     border-radius: 50%;
