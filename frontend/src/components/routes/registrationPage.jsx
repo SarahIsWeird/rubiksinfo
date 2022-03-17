@@ -72,7 +72,7 @@ export const RegistrationPage = () => {
 
         if (!allFieldsValid) return;
 
-        await register(username, password)
+        await register(username, password);
 
         setCookie('username', username, authCookieParameters);
 
