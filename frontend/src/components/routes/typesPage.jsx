@@ -10,7 +10,7 @@ const LeftAlignedCell = styled.td`
 
 const Image = styled.img`
     width: min(250px, calc(100% - 30px));
-    height: min(250px, calc(100% - 30px));
+    height: auto;
     padding: 15px;
 `;
 
