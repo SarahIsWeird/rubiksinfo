@@ -10,6 +10,7 @@ export const LeftImage = styled.div`
         align-self: center;
       
         width: 250px;
+        height: auto;
         padding: 15px;
     }
   
@@ -29,6 +30,7 @@ export const RightImage = styled.div`
         align-self: center;
       
         width: 250px;
+        height: auto;
         padding: 15px;
     }
 
@@ -40,5 +42,6 @@ export const RightImage = styled.div`
 export const InlineImage = styled.img`
     align-self: revert;
     width: 300px;
+    height: auto;
     padding: 15px 15px 0 15px;
 `;
