@@ -26,7 +26,7 @@ export const CubingScene = () => (
                 Weltrekord im Speedcubing mit einem 3x3x3-Würfel hält Yusheng Du,
                 der 2018 nur 3,47 Sekunden zur Lösung des Würfels benötigte. Neben
                 dem Lösen eines 3x3x3-Cubes gibt es noch viele andere Disziplinen,
-                bei denen <a href="arten.html">anderen Arten von Würfeln</a> gelöst werden.
+                bei denen <a href="arten">anderen Arten von Würfeln</a> gelöst werden.
             </p>
         </ShortParagraph>
         <RightImage>
